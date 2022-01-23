@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Isaac Rothenbaum Portfolio Site{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    {% block robots %}
+        <meta name="robots" content="index follow" />
+    {% endblock %}
+
+    {% block favicon %}
+        <!-- When we get a real favicon, check out https://realfavicongenerator.net/ -->
+    {%  endblock %}
+</head>
+{% block body %}
+<body class="{{ site.environment }}">
+    {% block content %}
+        <div>Welcome to my personal site!</div>
+    {% endblock %}
+</body>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/static/bundle.{{ site.version }}.js"></script>
+{% endblock %}
+</html>

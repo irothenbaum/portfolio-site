@@ -1,0 +1,20 @@
+{
+  "name": "isaac-rothenbaum-portfolio-site",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-async-handler": "^1.2.0",
+    "express-ws": "^5.0.2",
+    "twing": "^5.1.0",
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "fs": "0.0.1-security",
+    "prettier": "^2.5.1"
+  }
+}
