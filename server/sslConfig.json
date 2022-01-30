@@ -1,5 +1,13 @@
 {
   "cert": "",
   "key": "",
-  "chain": ""
+  "chain": "",
+
+  "vhosts": {
+    "mollyandisaacsittinginatree.com": {
+      "cert": "",
+      "key": "",
+      "chain": ""
+    }
+  }
 }

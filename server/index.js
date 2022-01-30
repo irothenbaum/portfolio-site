@@ -3,6 +3,19 @@ const socketServer = require('./helpers/SocketServerSingleton')
 const path = require('path')
 const fs = require('fs')
 const sslConfig = require('./sslConfig.json')
+const vhttps = require('vhttps')
+const {MollyAndIsaacSittingInATree} = require('./virtualHosts')
+
+/**
+ * @param {{key: string, cert: string, ca?: string}} conf
+ */
+function getOptionsFromSSLConfig(conf) {
+  return {
+    key: fs.readFileSync(conf.key, 'utf8'),
+    cert: fs.readFileSync(conf.cert, 'utf8'),
+    ca: conf.chain ? fs.readFileSync(conf.chain, 'utf8') : null,
+  }
+}
 
 const protocol = process.env.PROTOCOL || 'http'
 
@@ -13,18 +26,25 @@ const PORT = protocol === 'https' ? HTTPS_PORT : HTTP_PORT
 
 const app = express()
 
+app.use('/static', express.static(path.join(__dirname, '..', 'public')))
+
+// load our routes
+app.use(require('./routes'))
+
+// error handler
+app.use(function (err, req, res, next) {
+  // render the error page
+  res.status(err.status || 500).send(err.message)
+})
+
 let server
 if (protocol === 'http') {
   server = require('http').createServer(app)
 } else if (protocol === 'https') {
-  server = require('https').createServer(
-    {
-      key: fs.readFileSync(sslConfig.key, 'utf8'),
-      cert: fs.readFileSync(sslConfig.cert, 'utf8'),
-      ca: sslConfig.chain ? fs.readFileSync(sslConfig.chain, 'utf8') : null,
-    },
-    app,
-  )
+  const defaultOptions = getOptionsFromSSLConfig(sslConfig)
+  const weddingWebsiteOptions = getOptionsFromSSLConfig(sslConfig.vhosts[MollyAndIsaacSittingInATree])
+
+  server = vhttps.createServer(defaultOptions, [weddingWebsiteOptions], app)
 
   // force https
   let httpApp = express()
@@ -41,17 +61,6 @@ if (protocol === 'http') {
 }
 
 socketServer(app, server)
-
-app.use('/static', express.static(path.join(__dirname, '..', 'public')))
-
-// load our routes
-app.use(require('./routes'))
-
-// error handler
-app.use(function (err, req, res, next) {
-  // render the error page
-  res.status(err.status || 500).send(err.message)
-})
 
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`)

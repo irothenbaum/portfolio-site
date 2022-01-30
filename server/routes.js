@@ -1,13 +1,22 @@
 const express = require('express')
+const connect = require('connect')
 const asyncHandler = require('express-async-handler')
 const router = express.Router()
 const PortfolioController = require('./controllers/PortfolioController')
 const path = require("path");
 const GameController = require("./controllers/GameController");
+const vhost = require('vhost')
+const {MollyAndIsaacSittingInATree} = require('./virtualHosts')
+
+// ----------------------------------------------------------------------
+// WEDDING WEBSITE
+const MollyAndIsaacSittingInATreeSite = express.static(path.join(__dirname, '..', 'mollyandisaacsittinginatree'))
+router.use(vhost(MollyAndIsaacSittingInATree, MollyAndIsaacSittingInATreeSite))
+router.use('/mollyandisaacsittinginatree', MollyAndIsaacSittingInATreeSite)
+
+// ----------------------------------------------------------------------
 
 router.get('/', asyncHandler(PortfolioController.getLanding))
-
-router.use('/mollyandisaacsittinginatree', express.static(path.join(__dirname, '..', 'mollyandisaacsittinginatree')))
 
 // ----------------------------------------------------------------------
 // WORDLES WITH FRIENDS
