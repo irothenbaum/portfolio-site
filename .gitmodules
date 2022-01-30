@@ -1,3 +1,6 @@
 [submodule "mollyandisaacsittinginatree"]
 	path = mollyandisaacsittinginatree
 	url = git@github.com:irothenbaum/mollyandisaacsittinginatree.git
+[submodule "wordle"]
+	path = wordle
+	url = git@github.com:irothenbaum/wordle-clone.git
