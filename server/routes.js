@@ -22,10 +22,10 @@ router.get('/', asyncHandler(PortfolioController.getLanding))
 // WORDLES WITH FRIENDS
 
 // the App landing page:
-router.use('/wordles-with-friends', express.static(path.join(__dirname, '..', 'wordle')))
+router.use('/wordles-with-friends', asyncHandler(PortfolioController.getWordleGame))
 
 // the static files:
-router.use('/app-files/wordles-with-friends/', express.static(path.join(__dirname, '..', 'wordle', 'public')))
+router.use('/app-files/wordles-with-friends', express.static(path.join(__dirname, '..', 'wordle', 'public')))
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------

@@ -20,10 +20,11 @@
     {% block content %}
         <div>Welcome to my personal site!</div>
     {% endblock %}
+
+    {% block scripts %}
+        <script type="text/javascript" src="/static/js/index.js"></script>
+    {% endblock %}
 </body>
 {% endblock %}
 
-{% block scripts %}
-<script type="text/javascript" src="/static/bundle.{{ site.version }}.js"></script>
-{% endblock %}
 </html>
