@@ -1,12 +1,12 @@
 {
-  "cert": "",
-  "key": "",
+  "cert": "/etc/letsencrypt/live/mollyandisaacsittinginatree.com/fullchain.pem",
+  "key": "/etc/letsencrypt/live/mollyandisaacsittinginatree.com/privkey.pem",
   "chain": "",
 
   "vhosts": {
     "mollyandisaacsittinginatree.com": {
-      "cert": "",
-      "key": "",
+      "cert": "/etc/letsencrypt/live/mollyandisaacsittinginatree.com/fullchain.pem",
+      "key": "/etc/letsencrypt/live/mollyandisaacsittinginatree.com/privkey.pem",
       "chain": ""
     }
   }

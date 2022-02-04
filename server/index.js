@@ -31,7 +31,7 @@ if (protocol === 'http') {
   server = require('http').createServer(app)
 } else if (protocol === 'https') {
   const defaultOptions = getOptionsFromSSLConfig(sslConfig)
-  const weddingWebsiteOptions = getOptionsFromSSLConfig(sslConfig.vhosts[MollyAndIsaacSittingInATree])
+  const weddingWebsiteOptions = {hostname:MollyAndIsaacSittingInATree, ...getOptionsFromSSLConfig(sslConfig.vhosts[MollyAndIsaacSittingInATree])}
 
   server = vhttps.createServer(defaultOptions, [weddingWebsiteOptions], app)
 
