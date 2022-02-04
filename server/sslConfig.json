@@ -1,6 +1,6 @@
 {
-  "cert": "/etc/letsencrypt/live/mollyandisaacsittinginatree.com/fullchain.pem",
-  "key": "/etc/letsencrypt/live/mollyandisaacsittinginatree.com/privkey.pem",
+  "cert": "/etc/letsencrypt/live/404jkfoundit.com/fullchain.pem",
+  "key": "/etc/letsencrypt/live/404jkfoundit.com/privkey.pem",
   "chain": "",
 
   "vhosts": {
