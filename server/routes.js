@@ -38,5 +38,7 @@ router.ws('/versus/create', asyncHandler(GameController.socketCreateGame))
 router.ws('/versus/:code/join', asyncHandler(GameController.socketJoinGame))
 
 // ----------------------------------------------------------------------
+// CERTBOT
+router.use('/.well-known', express.static(path.join(__dirname, '..', '.well-known')))
 
 module.exports = router
