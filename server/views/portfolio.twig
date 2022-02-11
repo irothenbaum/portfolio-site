@@ -1,9 +1,41 @@
-{% include "./default.twig" %}
+{% extends "./default.twig" %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/static/css/portfolio.css"/>
+{% endblock %}
 
 {% block content %}
-    <div id="app">My Portfolio / Resume landing page</div>
+    <div id="hero">
+        <div>
+            <h1>404 Not Found</h1>
+        </div>
+
+        <div id="hero-bottom">
+            <h2>Unless you were looking for this...</h2>
+        </div>
+
+        <div id="down-arrow">
+            {% include "../../public/img/chevron_down.svg" %}
+        </div>
+    </div>
+
+
+    <div id="projects-section">
+        <h2>Projects</h2>
+
+        <ul>
+            <li id="wordles-with-friends">
+                <h3>Wordles with Friends</h3>
+            </li>
+
+            <li id="math-attack">
+                <h3>math, ATTACK!</h3>
+            </li>
+        </ul>
+    </div>
 {% endblock %}
 
 {% block scripts %}
-    <script type="text/javascript" src="/"></script>
+    <script type="text/javascript" src="/js/portfolio.js"></script>
 {% endblock %}

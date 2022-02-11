@@ -3,13 +3,15 @@ const wordleJSON = require('../../wordle/package.json')
 
 class PortfolioController {
   static async getLanding(req, res, next) {
-    res.send(await TwigRender('default'))
+    res.send(await TwigRender('portfolio'))
   }
 
   static async getWordleGame(req, res, next) {
-    res.send(await TwigRender('wordle', {
-      appVersion: wordleJSON.version
-    }))
+    res.send(
+      await TwigRender('wordle', {
+        appVersion: wordleJSON.version,
+      }),
+    )
   }
 }
 

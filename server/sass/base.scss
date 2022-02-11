@@ -1,0 +1,23 @@
+@use "variables.scss";
+@use "reset.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap');
+
+/*
+--------------------------------------------------------------------
+UNIVERSAL BOX SIZING
+--------------------------------------------------------------------
+ */
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+html,body {
+  background-color: variables.$bgColor;
+  color: variables.$textColor;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: variables.$letterSpacingBold;
+}
+
