@@ -19,6 +19,8 @@ html,body {
   color: variables.$textColor;
   font-family: 'Roboto', sans-serif;
   letter-spacing: variables.$letterSpacingBold;
+  height: 100%;
+  width: 100%;
 }
 
 button {

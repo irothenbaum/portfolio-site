@@ -7,10 +7,19 @@
   })
 
   function animatedHeroText() {
+    const text = $heroText.text()
+    let $container = $heroText.parent()
+    $container.css({
+      height: $container.height(),
+      width: $container.width(),
+    })
+
     $heroText.next().hide()
     $('#down-arrow').hide()
-    $heroText.html('&nbsp;')
-    const text = 'Unless you were looking for this'
+
+    $heroText.text('')
+
+    $container.css({opacity: 1})
 
     const recurse = () => {
       const currentText = $heroText.text()

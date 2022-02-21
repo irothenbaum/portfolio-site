@@ -115,6 +115,8 @@ html, body {
   color: #fff;
   font-family: "Roboto", sans-serif;
   letter-spacing: 2px;
+  height: 100%;
+  width: 100%;
 }
 
 button {
