@@ -42,7 +42,12 @@ const SocketHelper = {
    */
   getActiveSocketByCode(code, role) {
     return SocketHelper.getClients().find(s => {
-      return s.readyState === SocketHelper.SOCKET_OPEN && s._meta && s._meta.code === code && s._meta.role === role
+      return (
+        s.readyState === SocketHelper.SOCKET_OPEN &&
+        s._meta &&
+        s._meta.code === code &&
+        s._meta.role === role
+      )
     })
   },
 
@@ -60,7 +65,6 @@ const SocketHelper = {
    */
   configureSocket(socket) {
     socket.on('message', async function (msg) {
-      console.log('RECEIVED MESSAGE: ', msg)
       let data = DataMessage.fromReceived(msg)
 
       switch (data.type) {
@@ -71,7 +75,9 @@ const SocketHelper = {
 
         default:
           // everything else, we forward to the "other"
-          let otherSocket = SocketHelper.getSocketFromGameMeta(socket._meta.getOther())
+          let otherSocket = SocketHelper.getSocketFromGameMeta(
+            socket._meta.getOther(),
+          )
           if (otherSocket) {
             SocketHelper.pushToSocket(otherSocket, data)
           }

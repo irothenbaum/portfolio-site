@@ -1,5 +1,12 @@
 @use './variables';
 
+$colorMath: #62ae70;
+$colorMathDark: #3a6f43;
+$colorWordles: #bbac4a;
+$colorWordlesDark: #776d2d;
+
+$bgTransparent: rgba(51,51,51,0);
+
 #hero {
   height: 100vh;
   display: flex;
@@ -47,48 +54,204 @@
 }
 
 #projects-section {
-  border-top: 1px solid black;
   h2 {
     padding: variables.$spaceLarge;
-    font-size: 35px;
+    font-size: 36px;
     font-weight: variables.$weightThin;
   }
 
   ul {
-    margin-top: variables.$spaceLarge;
     list-style: none;
+    position: relative;
+    overflow: visible;
 
     li {
-      padding: variables.$spaceNormal;
-      padding-left: variables.$spaceLarge;
-      overflow: hidden;
+      @include variables.flex-row;
+
+      width: 100%;
+      height: 100vh;
+
+      overflow: visible;
       position: relative;
+
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
 
       &:before {
         content: '';
-        top:-12px;
-        left: -26px;
-        width: 40px;
-        position:absolute;
-        height: 120%;
-        transform: rotateZ(25deg);
-        background-color: variables.$bgColor;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
 
-      &:after {
-        content: '';
-        top: 4px;
-        right: -26px;
-        width: 40px;
-        position:absolute;
-        height: 120%;
-        transform: rotateZ(25deg);
-        background-color: variables.$bgColor;
+      .project-item-inner {
+        @include variables.flex-row;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: variables.$contentWidth;
+        margin: 0 auto;
+
+        & > div {
+          width: 100%;
+        }
+
+        h3 {
+          margin-bottom: variables.$spaceNormal;
+          font-size: 28px;
+          font-weight: variables.$weightThin;
+        }
+
+        .graphic-side {
+          z-index: 2;
+          width: 100%;
+          max-width: variables.$screenMediumMin;
+
+          img {
+            width: 100%;
+          }
+          margin: variables.$spaceNormal;
+        }
+
+        .text-side {
+          position: relative;
+          overflow: visible;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: variables.$spaceExtraLarge auto;
+
+          .text-side-inner {
+            padding: variables.$spaceNormal;
+            position: relative;
+            z-index: 10;
+          }
+
+          &:before {
+            position: absolute;
+            margin-top: -50%;
+            margin-left: -50%;
+            width: 200%;
+            height: 0;
+            padding-top: 200%;
+          }
+        }
+
+        .project-cta-container {
+          margin-top: variables.$spaceLarge;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            height: 50px;
+
+            &:last-child {
+              margin-left: variables.$spaceNormal;
+            }
+          }
+        }
       }
     }
+  }
+}
 
-    #wordles-with-friends {background-color: #21c800;}
-    #math-attack {background-color: #c86e00;}
+#math-attack {
+  background-image: url('/static/img/match_attack_graphic.svg');
+
+  .text-side-inner, &:before {
+    background-color: rgba(36, 51, 37, 0.95);
+  }
+
+  .text-side:before {
+    background: $colorMathDark;
+    background: radial-gradient(circle, $colorMathDark 0%, $bgTransparent 50%);
+  }
+}
+
+#wordles-with-friends {
+  background-image: url('/static/img/wordles_graphic.svg');
+
+  .text-side-inner, &:before {
+    background-color: rgba(58, 55, 36, 0.95);
+  }
+
+  .text-side:before {
+    background: $colorWordlesDark;
+    background: radial-gradient(circle, $colorWordlesDark 0%, $bgTransparent 50%);
+  }
+
+  .project-item-inner {
+    @include variables.medium-and-below {
+      flex-direction: column-reverse !important;
+    }
+  }
+}
+
+#footer {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    text-align: center;
+    font-size: 200px;
+
+    @include variables.medium-and-below {
+      font-size: 120px;
+    }
+
+    @include variables.small-and-below {
+      font-size: 72px;
+    }
+
+
+    font-weight: variables.$weightThin;
+    color: #555;
+
+    span {
+      animation-duration: 5s;
+      animation-name: animate-light;
+      animation-iteration-count: infinite;
+      animation-delay: 0ms;
+
+      &:nth-child(2) {
+        animation-delay: 50ms;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 100ms;
+      }
+
+      &:nth-child(4) {
+        animation-delay: 50ms;
+      }
+    }
+  }
+
+  & > div {
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #2d0b38;
+    padding: variables.$spaceNormal;
+
+    a {
+      color: variables.$textColor;
+      font-size: 1.5em;
+      @include variables.hover-cta;
+      margin-right: variables.$spaceNormal;
+    }
   }
 }
 
@@ -105,6 +268,36 @@
   100% {
     transform: translateY(0);
     opacity: 0;
+  }
+}
+
+@keyframes animate-light {
+  0% {
+    color: rgb(255, 255, 255, 0.1);
+    text-shadow: 0 0 0 rgb(255, 255, 255, 0);
+  }
+
+  10% {
+    color: rgb(255, 255, 255, 0.1);
+    text-shadow: 0 0 0 rgb(255, 255, 255, 0.1);
+  }
+
+  11% {
+    color: rgb(255, 255, 255, 1);
+    text-shadow: 0 0 12px rgb(255, 255, 255, 1), 0 0 25px rgb(255, 255, 255, 0.5) ;
+  }
+
+  21% {
+    color: rgb(0, 200, 255, 1);
+    text-shadow: 0 0 12px rgb(0, 200, 255, 1);
+  }
+
+  50% {
+    text-shadow: 0 0 0 rgb(255, 255, 255, 0);
+  }
+
+  100% {
+    color: rgb(255, 255, 255, 0.1);
   }
 
 }

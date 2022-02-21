@@ -12,7 +12,7 @@
         </div>
 
         <div id="hero-bottom">
-            <h2>Unless you were looking for this...</h2>
+            <h2><span id="animate-type">Unless you were looking for this</span><span class="slow-pulse">:</span></h2>
         </div>
 
         <div id="down-arrow">
@@ -22,20 +22,90 @@
 
 
     <div id="projects-section">
-        <h2>Projects</h2>
-
         <ul>
-            <li id="wordles-with-friends">
-                <h3>Wordles with Friends</h3>
+            <li id="math-attack">
+                <div class="project-item-inner">
+                    <div class="graphic-side">
+                        <img src="/static/img/match_attack_graphic.svg" />
+                    </div>
+
+                    <div class="text-side">
+                        <div class="text-side-inner">
+                            <h3>math, ATTACK!</h3>
+                            <p>
+                                Train your brain with this simple math app.
+                                <br />
+                                <br />
+                                4 game modes: <br />
+                                &nbsp;&nbsp;- Classic<br />
+                                &nbsp;&nbsp;- Marathon<br />
+                                &nbsp;&nbsp;- Estimation<br />
+                                &nbsp;&nbsp;- Versus<br />
+                            </p>
+                            <div class="project-cta-container">
+                                <a target="_blank" href="">
+                                    <img src="/static/img/google_play_badge.png"/>
+                                </a>
+
+                                <a target="_blank" href="">
+                                    <img src="/static/img/app_store_badge.svg" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
 
-            <li id="math-attack">
-                <h3>math, ATTACK!</h3>
+            <li id="wordles-with-friends">
+                <div class="project-item-inner">
+                    <div class="text-side">
+                        <div class="text-side-inner">
+                            <h3>Wordles with Friends</h3>
+                            <p>
+                                A new twist on the viral word-guessing game Wordle.
+                                <br />
+                                <br />
+                                &nbsp;&nbsp;- No daily limit<br />
+                                &nbsp;&nbsp;- Words of 5, 6, 7, and 8 length<br />
+                                &nbsp;&nbsp;- Wordle-reverse game mode<br />
+                                &nbsp;&nbsp;- Versus mode<br />
+                            </p>
+
+                            <div class="project-cta-container">
+                                <a target="_blank" href="/wordles-with-friends">
+                                    <button>Play</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graphic-side">
+                        <img src="/static/img/wordles_graphic.svg" />
+                    </div>
+                </div>
             </li>
         </ul>
+
+        <div id="footer">
+            <h2>
+                <span>&bull;</span>
+                <span>&bull;</span>
+                <span><i class="fa-solid fa-code-commit"></i></span>
+                <span>&bull;</span>
+                <span>&bull;</span>
+            </h2>
+            <div id="footer-items">
+                <a href="https://github.com/irothenbaum" target="_blank">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/isaacrothenbaum" target="_blank">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
 {% block scripts %}
-    <script type="text/javascript" src="/js/portfolio.js"></script>
+    {{ parent() }}
+    <script type="text/javascript" src="/static/js/portfolio.js"></script>
 {% endblock %}

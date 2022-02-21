@@ -24,7 +24,6 @@ class GameController {
     let tooManyCount = 10
     do {
       connectCode = randomCharacters(CODE_LENGTH)
-      console.log(connectCode)
 
       if (tooManyCount-- < 0) {
         throw new Error('Could not generate a unique code')
@@ -55,7 +54,10 @@ class GameController {
     let connectCode = req.params.code
 
     // make sure this code isn't already in use
-    let activeOpponent = SocketHelper.getActiveSocketByCode(connectCode, ROLE_OPPONENT)
+    let activeOpponent = SocketHelper.getActiveSocketByCode(
+      connectCode,
+      ROLE_OPPONENT,
+    )
     if (activeOpponent) {
       throw new Error('Game full')
     }

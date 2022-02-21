@@ -2,10 +2,59 @@ $textColor: #fff;
 $bgColor: #333;
 
 $textShadow: 1px 2px 4px black;
+
 $weightThin: 100;
-$weightBold: bold;
+$weightNormal: 400;
+$weightBold: 900;
 
 $letterSpacingBold: 2px;
 
+$spaceExtraLarge: 80px;
 $spaceLarge: 40px;
 $spaceNormal: 20px;
+$spaceSmall: 10px;
+
+$transitionTiming: 0.2s ease-out;
+
+$screenSmallMin: 0px;
+$screenSmallMax: 600px;
+$screenMediumMin: 601px;
+$screenMediumMax: 1024px;
+$screenLargeMin: 1025px;
+$screenLargeMax: 1440px;
+
+$contentWidth: $screenLargeMax;
+
+@mixin hover-cta {
+  opacity: 0.5;
+  transition: opacity $transitionTiming;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 1;
+  }
+}
+
+@mixin medium-and-below {
+  @media screen and (max-width: $screenMediumMax) {
+    @content;
+  }
+}
+
+@mixin small-and-below {
+  @media screen and (max-width: $screenSmallMax) {
+    @content;
+  }
+}
+
+@mixin flex-row($breakPoint: $screenMediumMax) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  @media screen and (max-width: $breakPoint) {
+    flex-direction: column;
+  }
+}
