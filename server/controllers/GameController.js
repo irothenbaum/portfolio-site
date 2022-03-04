@@ -1,8 +1,23 @@
 const SocketHelper = require('../helpers/SocketHelper')
 const DataMessage = require('../helpers/DataMessage')
 const CODE_LENGTH = 6
-const ROLE_OPPONENT = 'role-opponent'
-const ROLE_HOST = 'role-host'
+
+const generateNewCode = () => {
+  let connectCode
+  // generate a new code
+  let tooManyCount = 10
+  do {
+    connectCode = randomCharacters(CODE_LENGTH)
+
+    if (tooManyCount-- < 0) {
+      throw new Error('Could not generate a unique code')
+    }
+  } while (
+    SocketHelper.getActiveSocketByCode(connectCode, SocketHelper.ROLE_HOST)
+  )
+
+  return connectCode
+}
 
 /**
  * @param {number?} length
@@ -19,30 +34,38 @@ class GameController {
    * @return {Promise<void>}
    */
   static async socketCreateGame(socket, req) {
-    let connectCode
-    // generate a new code
-    let tooManyCount = 10
-    do {
-      connectCode = randomCharacters(CODE_LENGTH)
+    let connectCode = req.params.code ? req.params.code : generateNewCode()
+    let recoveryCode = req.params.recoveryCode
 
-      if (tooManyCount-- < 0) {
-        throw new Error('Could not generate a unique code')
-      }
-    } while (SocketHelper.getActiveSocketByCode(connectCode, ROLE_HOST))
+    verifyCanConnectToCode(SocketHelper.ROLE_HOST, connectCode, recoveryCode)
 
     // mark this socket
-    SocketHelper.markSocketWithCode(socket, connectCode, ROLE_HOST)
+    const gameMeta = SocketHelper.markSocketWithCode(
+      socket,
+      connectCode,
+      SocketHelper.ROLE_HOST,
+    )
 
     // configure our server side handling
     SocketHelper.configureSocket(socket)
 
-    // notify the game we're waiting for a controller to connect
-    // this from the Types file
-    let successMessage = DataMessage.toSend('connection:waiting', {
-      connectCode: connectCode,
-    })
+    const existingOpponent = SocketHelper.getActiveSocketByCode(
+      connectCode,
+      SocketHelper.ROLE_OPPONENT,
+    )
 
-    SocketHelper.pushToSocket(socket, successMessage)
+    if (!!existingOpponent) {
+      // mark this is the new host
+      initiateHandshake(socket, existingOpponent)
+    } else {
+      // notify client we're waiting for opponent
+      let successMessage = DataMessage.toSend('connection:waiting', {
+        connectCode: connectCode,
+        recoveryCode: gameMeta.recoveryCode,
+      })
+
+      SocketHelper.pushToSocket(socket, successMessage)
+    }
   }
 
   /**
@@ -52,23 +75,29 @@ class GameController {
    */
   static async socketJoinGame(socket, req) {
     let connectCode = req.params.code
+    let recoveryCode = req.params.recoveryCode
 
-    // make sure this code isn't already in use
-    let activeOpponent = SocketHelper.getActiveSocketByCode(
+    verifyCanConnectToCode(
+      SocketHelper.ROLE_OPPONENT,
       connectCode,
-      ROLE_OPPONENT,
+      recoveryCode,
     )
-    if (activeOpponent) {
-      throw new Error('Game full')
-    }
 
-    let activeGame = SocketHelper.getActiveSocketByCode(connectCode, ROLE_HOST)
+    let activeGame = SocketHelper.getActiveSocketByCode(
+      connectCode,
+      SocketHelper.ROLE_HOST,
+    )
+
     if (!activeGame) {
       throw new Error('No game found')
     }
 
     // mark this socket
-    SocketHelper.markSocketWithCode(socket, connectCode, ROLE_OPPONENT)
+    const gameMeta = SocketHelper.markSocketWithCode(
+      socket,
+      connectCode,
+      SocketHelper.ROLE_OPPONENT,
+    )
 
     // configure our server side handling
     SocketHelper.configureSocket(socket)
@@ -85,11 +114,47 @@ class GameController {
 function initiateHandshake(hostSocket, opponentSocket) {
   SocketHelper.markSocketsAsConnected(hostSocket, opponentSocket)
 
-  // send them both a ready event
+  const hostMeta = SocketHelper.getGameMetaFromSocket(hostSocket)
+  const opponentMeta = SocketHelper.getGameMetaFromSocket(opponentSocket)
+
   // this from the Types file
-  let readyMessage = DataMessage.toSend('connection:ready')
-  SocketHelper.pushToSocket(opponentSocket, readyMessage)
-  SocketHelper.pushToSocket(hostSocket, readyMessage)
+  const readyEventType = 'connection:ready'
+
+  SocketHelper.pushToSocket(
+    opponentSocket,
+    DataMessage.toSend(readyEventType, opponentMeta),
+  )
+  SocketHelper.pushToSocket(
+    hostSocket,
+    DataMessage.toSend(readyEventType, hostMeta),
+  )
+}
+
+/**
+ * @param {string} connectRole
+ * @param {string} connectCode
+ * @param {string?} recoveryCode
+ */
+function verifyCanConnectToCode(connectRole, connectCode, recoveryCode) {
+  // make sure this code isn't already in use
+  let activeOpponent = SocketHelper.getActiveSocketByCode(
+    connectCode,
+    connectRole,
+  )
+  if (activeOpponent) {
+    if (recoveryCode) {
+      let opponentMeta = SocketHelper.getGameMetaFromSocket(activeOpponent)
+
+      if (opponentMeta.recoveryCode !== recoveryCode) {
+        // imposter!
+        throw new Error('Incorrect recovery code')
+      }
+    }
+    // they've got the hosts recoveryCode, must be the guy. Close the old one
+    activeOpponent.close()
+  } else {
+    throw new Error('Game full')
+  }
 }
 
 module.exports = GameController
