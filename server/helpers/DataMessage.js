@@ -36,4 +36,4 @@ class DataMessage {
   }
 }
 
-export default DataMessage
+module.exports = DataMessage
