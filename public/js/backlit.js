@@ -40,11 +40,15 @@
     configureColorPreview($('#color-preview'))
     setBacklitColor(colors[0])
 
-    $(window).on('keydown', ev => {
-      console.log(ev.key)
-      if (['Escape', ' ', 'Enter'].includes(ev.key)) {
-        $settingsButton.click();
-      }
+    $(window).on('keydown', () => {
+      $settingsButton.click()
+    })
+    $(window).click(() => {
+      $settingsButton.click()
+    })
+
+    $('.modal').click(ev => {
+      ev.stopPropagation()
     })
   })
 
