@@ -21,6 +21,7 @@
     '#ffffff',
   ]
   const TAU = Math.PI * 2
+  const CLASS_cursor = 'special-cursor'
   const CLASS_spin = 'fa-spin'
   const CLASS_open = 'open'
   const spinDuration = 200
@@ -31,6 +32,7 @@
   let $settingsContainer
   let $colorWheel
   let $colorPreview
+  let $eyeDropper
 
   $(window.document).ready(() => {
     configureLight($('body'))
@@ -38,12 +40,12 @@
     configureColorWheel($('#color-wheel'))
     configureSettingsContainer($('#settings-container'))
     configureColorPreview($('#color-preview'))
+    configureEyeDropper($('#eye-dropper'))
     setBacklitColor(colors[0])
 
-    $(window).on('keydown', () => {
-      $settingsButton.click()
-    })
-    $(window).click(() => {
+    $(window).on('keydown', () => $settingsButton.click())
+    $(window).click((e) => {
+      e.stopPropagation()
       $settingsButton.click()
     })
 
@@ -61,19 +63,51 @@
     context.canvas.width = $colorWheel.width()
     context.canvas.height = $colorWheel.height()
 
+    // determine size of each wedge
     const wedgeSize = TAU / colors.length
+
+    // create our color slices
+    colors.forEach((c, i, a) => createWedge(context, c, i, a))
+
+    // handle clicking a color slice
     canvas.addEventListener('click', event => {
+      if (!$settingsContainer.hasClass(CLASS_open)) {
+        return
+      }
+
       const center = context.canvas.width / 2
+
+      // determine angle of click from cetner
       const mousePos = oMousePos(canvas, event)
       const mouseAngle = (angle(center, center, mousePos.x, mousePos.y) + TAU) % TAU
 
+      // determine which wedge that would be in our array
       const wedgeIndex = Math.floor(mouseAngle / wedgeSize)
-      console.log(mousePos, mouseAngle, wedgeIndex)
+
+      // set the color
       setBacklitColor(colors[wedgeIndex])
     })
 
-    let wedges = colors.map((c, i, a) => createWedge(context, c, i, a))
+    // handle cursor change
+    canvas.addEventListener('mouseenter', () => {
+      $colorWheel.addClass(CLASS_cursor)
+      $eyeDropper.show()
+    })
+    canvas.addEventListener('mouseleave', () => {
+      $colorWheel.removeClass(CLASS_cursor)
+      $eyeDropper.hide()
+    })
+
+   // handle placing the eye dropper
+   canvas.addEventListener('mousemove', event => {
+     const mousePo = oMousePos(canvas, event)
+     $eyeDropper.css({
+       left: mousePo.x + 3,
+       top: mousePo.y - $eyeDropper.height() - 3,
+     })
+   })
   }
+
 
   function configureLight($e) {
     $light = $e
@@ -82,17 +116,20 @@
   function configureSettingsButton($e) {
     $settingsButton = $e
 
-    $settingsButton.click(() => {
+    $settingsButton.click(ev => {
+      if (ev) {
+        ev.stopPropagation()
+      }
       if (settingsOpenTimeout) {
         return
       }
 
-      $settingsButton.addClass(CLASS_spin)
-      $settingsContainer.toggleClass(CLASS_open)
       settingsOpenTimeout = setTimeout(() => {
         $settingsButton.removeClass(CLASS_spin)
         settingsOpenTimeout = null
       }, spinDuration)
+      $settingsButton.addClass(CLASS_spin)
+      $settingsContainer.toggleClass(CLASS_open)
     })
   }
 
@@ -104,6 +141,10 @@
     $colorPreview = $e
   }
 
+  function configureEyeDropper($e) {
+    $eyeDropper = $e
+  }
+
   // -----------------------------------------------
   /**
    * @param {string} color
@@ -111,6 +152,7 @@
   function setBacklitColor(color) {
     $colorPreview.css({backgroundColor: color})
     $light.css({backgroundColor: color})
+    // $eyeDropper.css({fill: color})
   }
 
   /**

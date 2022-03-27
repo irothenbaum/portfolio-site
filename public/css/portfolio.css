@@ -149,7 +149,7 @@
 }
 
 #math-attack {
-  background-image: url("/static/img/match_attack_graphic.svg");
+  background-image: url("/static/img/math_attack_graphic.svg");
 }
 #math-attack .text-side-inner, #math-attack:before {
   background-color: rgba(36, 51, 37, 0.95);
@@ -173,6 +173,27 @@
   #wordles-with-friends .project-item-inner {
     flex-direction: column-reverse !important;
   }
+}
+
+#backlit {
+  background-image: url("/static/img/backlit_graphic.svg");
+}
+#backlit .text-side-inner, #backlit:before {
+  background-color: #000;
+}
+#backlit .text-side:before {
+  background: #000;
+  background: radial-gradient(circle, #000 0%, rgba(51, 51, 51, 0) 50%);
+}
+#backlit button {
+  background-color: #3c4846;
+  box-shadow: 0 0 0 0 #e1ffa6;
+}
+#backlit button:hover {
+  transition: background-color 0.1s ease-out, box-shadow 0.1s 0.05s ease-out;
+  background-color: #e1ffa6;
+  color: white;
+  box-shadow: 0 0 10px 0 #e1ffa6;
 }
 
 #footer {

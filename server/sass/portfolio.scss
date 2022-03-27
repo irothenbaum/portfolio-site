@@ -213,6 +213,20 @@ $bgTransparent: rgba(51,51,51,0);
     background: $colorBacklitDark;
     background: radial-gradient(circle, $colorBacklitDark 0%, $bgTransparent 50%);
   }
+
+  button {
+    $lightColor: #e1ffa6;
+
+    background-color: #3c4846;
+    box-shadow: 0 0 0 0 $lightColor;
+
+    &:hover {
+      transition: background-color 0.1s ease-out, box-shadow 0.1s 0.05s ease-out;
+      background-color: $lightColor;
+      color: white;
+      box-shadow: 0 0 10px 0 $lightColor;
+    }
+  }
 }
 
 #footer {
