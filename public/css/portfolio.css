@@ -176,24 +176,28 @@
 }
 
 #backlit {
-  background-image: url("/static/img/backlit_graphic.svg");
+  background-color: black;
 }
-#backlit .text-side-inner, #backlit:before {
-  background-color: #000;
-}
-#backlit .text-side:before {
-  background: #000;
-  background: radial-gradient(circle, #000 0%, rgba(51, 51, 51, 0) 50%);
-}
-#backlit button {
-  background-color: #3c4846;
-  box-shadow: 0 0 0 0 #e1ffa6;
-}
-#backlit button:hover {
-  transition: background-color 0.1s ease-out, box-shadow 0.1s 0.05s ease-out;
+#backlit.light {
+  transition: background-color 0.2s ease-out;
   background-color: #e1ffa6;
+}
+#backlit.light .text-side-inner {
+  color: black;
+}
+#backlit .graphic-side {
+  text-align: center;
+}
+#backlit #backlit-button {
+  z-index: 10;
+  font-size: 12rem;
+  color: #3c4846;
+  box-shadow: 0 0 0 0 white;
+}
+#backlit #backlit-button:hover {
+  transition: box-shadow 0.1s 0.05s ease-out;
   color: white;
-  box-shadow: 0 0 10px 0 #e1ffa6;
+  text-shadow: 0 0 20px white, 0 0 80px white;
 }
 
 #footer {

@@ -24,6 +24,7 @@
   const CLASS_cursor = 'special-cursor'
   const CLASS_spin = 'fa-spin'
   const CLASS_open = 'open'
+  const CACHE_color = 'backlit-color'
   const spinDuration = 200
 
   let settingsOpenTimeout
@@ -41,7 +42,7 @@
     configureSettingsContainer($('#settings-container'))
     configureColorPreview($('#color-preview'))
     configureEyeDropper($('#eye-dropper'))
-    setBacklitColor(colors[0])
+    setBacklitColor(localStorage[CACHE_color] || colors[Math.floor(Math.random()) * colors.length])
 
     $(window).on('keydown', () => $settingsButton.click())
     $(window).click((e) => {
@@ -153,6 +154,7 @@
     $colorPreview.css({backgroundColor: color})
     $light.css({backgroundColor: color})
     // $eyeDropper.css({fill: color})
+    window.localStorage[CACHE_color] = color
   }
 
   /**
