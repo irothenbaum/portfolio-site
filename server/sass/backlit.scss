@@ -1,0 +1,96 @@
+@use './variables';
+
+$paper: #e4e4e4;
+
+#settings-button {
+  @include variables.hover-cta();
+  position: fixed;
+  z-index: 10;
+  top: variables.$spaceNormal;
+  right: variables.$spaceNormal;
+  font-size: 2em;
+
+  animation-timing-function: ease-in-out;
+  animation-duration: 200ms;
+}
+
+#settings-container {
+  position: fixed;
+  background: rgba(0,0,0, 0.8);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity variables.$transitionTiming;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.open {
+    opacity: 1;
+  }
+}
+
+#color-wheel-container {
+  border-radius: 50%;
+  overflow: hidden;
+  padding-top: 50%;
+  width: 50%;
+  height: 0;
+  background: $paper;
+  position: relative;
+  left: variables.$spaceLarge;
+  z-index: 2;
+  filter: drop-shadow(4px 0 10px rgba(100,100,100,0.3));
+}
+
+#color-wheel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#color-preview-container {
+  width: 50%;
+  padding-top: 50%;
+  background: $paper;
+  border-radius: 12px;
+  position: relative;
+  right: variables.$spaceLarge;
+}
+
+#color-preview {
+  position: absolute;
+  top: 2.5%;
+  left: 2.5%;
+  width: 95%;
+  height: 95%;
+}
+
+.modal {
+  max-width: variables.$screenMediumMin;
+  @media (orientation: portrait) {
+    max-height: 80%;
+  }
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+$wedgeHeight: 1000px;
+$wedgeWidth: $wedgeHeight / 6;
+
+.wedge {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - $wedgeWidth);
+  transform-origin: top;
+  height: 0;
+  width: 0;
+  border-bottom: $wedgeHeight solid red;
+  border-left: $wedgeWidth solid transparent;
+  border-right: $wedgeWidth solid transparent;
+}

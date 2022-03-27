@@ -228,6 +228,7 @@
 #footer > div a {
   color: #fff;
   font-size: 1.5em;
+  cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.2s ease-out;
   margin-right: 20px;

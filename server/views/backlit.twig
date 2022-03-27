@@ -1,0 +1,25 @@
+{% extends "./default.twig" %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/static/css/backlit.css"/>
+{% endblock %}
+
+{% block content %}
+    <i id="settings-button" class="fa-solid fa-palette"></i>
+    <div id="settings-container">
+        <div class="modal">
+            <div id="color-wheel-container">
+                <canvas id="color-wheel"></canvas>
+            </div>
+            <div id="color-preview-container">
+                <div id="color-preview"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/static/js/backlit.js"></script>
+{% endblock %}

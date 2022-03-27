@@ -6,6 +6,10 @@ class PortfolioController {
     res.send(await TwigRender('portfolio'))
   }
 
+  static async getBackLit(req, res, next) {
+    res.send(await TwigRender('backlit'))
+  }
+
   static async getWordleGame(req, res, next) {
     res.send(
       await TwigRender('wordle', {

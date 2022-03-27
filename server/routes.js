@@ -17,6 +17,7 @@ router.use('/mollyandisaacsittinginatree', MollyAndIsaacSittingInATreeSite)
 // ----------------------------------------------------------------------
 
 router.get('/', asyncHandler(PortfolioController.getLanding))
+router.get('/backlit', asyncHandler(PortfolioController.getBackLit))
 
 // ----------------------------------------------------------------------
 // WORDLES WITH FRIENDS
