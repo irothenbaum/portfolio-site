@@ -26,6 +26,7 @@ $screenLargeMax: 1440px;
 $contentWidth: $screenLargeMax;
 
 @mixin hover-cta {
+  cursor: pointer;
   opacity: 0.5;
   transition: opacity $transitionTiming;
   &:hover {

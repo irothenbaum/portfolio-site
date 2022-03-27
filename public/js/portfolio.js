@@ -4,6 +4,7 @@
     $heroText = $('#animate-type')
 
     animatedHeroText()
+    configureBacklitSection()
   })
 
   function animatedHeroText() {
@@ -36,5 +37,17 @@
     }
 
     setTimeout(recurse, 1000)
+  }
+
+  function configureBacklitSection() {
+    const $container = $('#backlit')
+    const $button = $('#backlit-button')
+
+    $button.on('mouseenter touchstart', () => {
+      $container.addClass('light')
+    })
+    $button.on('mouseleave touchend', () => {
+      $container.removeClass('light')
+    })
   }
 })(window, jQuery)
