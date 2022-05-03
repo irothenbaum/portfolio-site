@@ -88,12 +88,13 @@ class GameController {
       SocketHelper.ROLE_HOST,
     )
 
+    // There must be a host for someone to join -- cannot have opponent join first
     if (!activeGame) {
       throw new Error('No game found')
     }
 
     // mark this socket
-    const gameMeta = SocketHelper.markSocketWithCode(
+    SocketHelper.markSocketWithCode(
       socket,
       connectCode,
       SocketHelper.ROLE_OPPONENT,
@@ -137,23 +138,26 @@ function initiateHandshake(hostSocket, opponentSocket) {
  */
 function verifyCanConnectToCode(connectRole, connectCode, recoveryCode) {
   // make sure this code isn't already in use
-  let activeOpponent = SocketHelper.getActiveSocketByCode(
+  let activeSocket = SocketHelper.getActiveSocketByCode(
     connectCode,
     connectRole,
   )
-  if (activeOpponent) {
-    if (recoveryCode) {
-      let opponentMeta = SocketHelper.getGameMetaFromSocket(activeOpponent)
-
-      if (opponentMeta.recoveryCode !== recoveryCode) {
-        // imposter!
-        throw new Error('Incorrect recovery code')
-      }
+  if (!!activeSocket) {
+    if (!recoveryCode) {
+      throw new Error('Game is full')
     }
+
+    let opponentMeta = SocketHelper.getGameMetaFromSocket(activeSocket)
+
+    if (opponentMeta.recoveryCode !== recoveryCode) {
+      // imposter!
+      throw new Error('Incorrect recovery code')
+    }
+
     // they've got the hosts recoveryCode, must be the guy. Close the old one
-    activeOpponent.close()
+    activeSocket.close()
   } else {
-    throw new Error('Game full')
+    // do nothing, this connection can assume the uncalimed role
   }
 }
 
