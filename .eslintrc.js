@@ -5,4 +5,10 @@ module.exports = {
     semi: ['error', 'never'],
     'prettier/prettier': 0,
   },
+  env: {
+    node: true,
+  },
+  parserOptions: {
+    ecmaVersion: "latest"
+  }
 }
