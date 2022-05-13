@@ -1,10 +1,17 @@
 const socketServer = require('./SocketServerSingleton')
 const DataMessage = require('./DataMessage')
+const {v4: uuid} = require('uuid')
 
 class GameMeta {
-  constructor(code, role) {
+  /**
+   * @param {string} code
+   * @param {string} role
+   * @param {string} recoveryCode
+   */
+  constructor(code, role, recoveryCode) {
     this.code = code
     this.role = role
+    this.recoveryCode = recoveryCode
   }
 
   /**
@@ -24,6 +31,8 @@ class GameMeta {
 
 const SocketHelper = {
   SOCKET_OPEN: 1,
+  ROLE_OPPONENT: 'role-opponent',
+  ROLE_HOST: 'role-host',
 
   /**
    * @returns {Array}
@@ -55,9 +64,11 @@ const SocketHelper = {
    * @param {WebSocket} socket
    * @param {string} code
    * @param {string} role
+   * @return {GameMeta}
    */
   markSocketWithCode(socket, code, role) {
-    socket._meta = new GameMeta(code, role)
+    socket._meta = new GameMeta(code, role, uuid())
+    return socket._meta
   },
 
   /**
@@ -95,6 +106,14 @@ const SocketHelper = {
       return null
     }
     return SocketHelper.getActiveSocketByCode(other.code, other.role)
+  },
+
+  /**
+   * @param {WebSocket} socket
+   * @return {GameMeta}
+   */
+  getGameMetaFromSocket(socket) {
+    return socket._meta
   },
 
   /**
