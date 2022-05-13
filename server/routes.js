@@ -40,15 +40,19 @@ router.use(
 // ----------------------------------------------------------------------
 // VERSUS PLATFORM
 
+// looks like optional params syntax is not supported, so we list out all possibilities
 // Hosts connect endpoint:
+router.ws('/versus/create', asyncHandler(GameController.socketCreateGame))
+router.ws('/versus/create/:code', asyncHandler(GameController.socketCreateGame))
 router.ws(
-  '/versus/create/:code?/:recoveryCode?',
+  '/versus/create/:code/:recoveryCode',
   asyncHandler(GameController.socketCreateGame),
 )
 
 // Opponent connect endpoint:
+router.ws('/versus/:code/join', asyncHandler(GameController.socketJoinGame))
 router.ws(
-  '/versus/:code/join/:recoveryCode?',
+  '/versus/:code/join/:recoveryCode',
   asyncHandler(GameController.socketJoinGame),
 )
 
