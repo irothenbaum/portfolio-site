@@ -20,6 +20,7 @@ router.use('/mollyandisaacsittinginatree', MollyAndIsaacSittingInATreeSite)
 
 router.get('/', asyncHandler(PortfolioController.getLanding))
 router.get('/backlit', asyncHandler(PortfolioController.getBackLit))
+router.get('/math-attack', asyncHandler(PortfolioController.getPrivacyPolicy))
 
 // ----------------------------------------------------------------------
 // WORDLES WITH FRIENDS

@@ -17,6 +17,10 @@ class PortfolioController {
       }),
     )
   }
+
+  static async getPrivacyPolicy(req, res, next) {
+    res.send(await TwigRender('privacy-policy'))
+  }
 }
 
 module.exports = PortfolioController
