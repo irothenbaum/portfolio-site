@@ -1,9 +1,15 @@
 const TwigRender = require('../helpers/TwigRender')
 const wordleJSON = require('../../wordle/package.json')
+const {MATH_ATTACK_PLAY_STORE, MATH_ATTACK_APP_STORE} = require('../constants')
 
 class PortfolioController {
   static async getLanding(req, res, next) {
-    res.send(await TwigRender('portfolio'))
+    res.send(
+      await TwigRender('portfolio', {
+        mathAttackPlayStore: MATH_ATTACK_PLAY_STORE,
+        mathAttackAppStore: MATH_ATTACK_APP_STORE,
+      }),
+    )
   }
 
   static async getBackLit(req, res, next) {

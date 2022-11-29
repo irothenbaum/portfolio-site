@@ -134,7 +134,7 @@ $lightOffColor: #3c4846;
 }
 
 $wedgeHeight: 1000px;
-$wedgeWidth: $wedgeHeight / 6;
+$wedgeWidth: calc($wedgeHeight / 6);
 
 .wedge {
   position: absolute;

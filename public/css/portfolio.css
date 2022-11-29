@@ -63,9 +63,6 @@
   padding: 80px 0;
   overflow: visible;
   position: relative;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 @media screen and (max-width: 1024px) {
   #projects-section ul li {
@@ -149,25 +146,44 @@
 }
 
 #math-attack {
-  background-image: url("/static/img/math_attack_graphic.svg");
+  background-color: white;
+  background-position: center center;
+  background-repeat: repeat;
+  background-size: 15%;
+  background-image: url("/static/img/math_attack_wallpaper.png");
 }
-#math-attack .text-side-inner, #math-attack:before {
-  background-color: rgba(36, 51, 37, 0.95);
+#math-attack .graphic-side .math-attack-img-wrapper {
+  margin: 0 auto;
+  width: 80%;
+  padding: 20%;
+  background-color: #fcfcfc;
+  border-radius: 10%;
+  box-shadow: 0 12px 25px -12px #000, inset 0 -8px 20px -12px #000, inset 0 8px 20px 0px #fff;
 }
-#math-attack .text-side:before {
-  background: #3a6f43;
-  background: radial-gradient(circle, #3a6f43 0%, rgba(51, 51, 51, 0) 50%);
+#math-attack:before {
+  background: radial-gradient(circle, white 20%, rgba(255, 255, 255, 0.7) 100%);
+}
+#math-attack .text-side-inner {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+#math-attack .text-side-inner h3 {
+  font-weight: 900 !important;
+  margin-bottom: 40px !important;
+}
+#math-attack .text-side-inner h3 img {
+  width: 120px;
+  transform: rotate(-10deg) translate(-10px, 10px);
 }
 
 #wordles-with-friends {
   background-image: url("/static/img/wordles_graphic.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #wordles-with-friends .text-side-inner, #wordles-with-friends:before {
   background-color: rgba(58, 55, 36, 0.95);
-}
-#wordles-with-friends .text-side:before {
-  background: #776d2d;
-  background: radial-gradient(circle, #776d2d 0%, rgba(51, 51, 51, 0) 50%);
 }
 @media screen and (max-width: 1024px) {
   #wordles-with-friends .project-item-inner {
