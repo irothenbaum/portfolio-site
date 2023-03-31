@@ -4,3 +4,6 @@
 [submodule "wordle"]
 	path = wordle
 	url = git@github.com:irothenbaum/wordle-clone.git
+[submodule "mehmoh"]
+	path = mehmoh
+	url = git@github.com:irothenbaum/mehmoh.git

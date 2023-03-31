@@ -39,6 +39,10 @@ router.use(
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
+// MEH MOH
+router.use('/mehmoh', express.static(path.join(__dirname, '..', 'mehmoh', 'dist')),)
+
+// ----------------------------------------------------------------------
 // VERSUS PLATFORM
 
 // looks like optional params syntax is not supported, so we list out all possibilities
