@@ -49,6 +49,12 @@ $contentWidth: $screenLargeMax;
   }
 }
 
+@mixin extra-large-and-above {
+  @media screen and (min-width: $screenLargeMax + $screenSmallMax) {
+    @content;
+  }
+}
+
 @mixin flex-row($breakPoint: $screenMediumMax) {
   display: flex;
   justify-content: center;

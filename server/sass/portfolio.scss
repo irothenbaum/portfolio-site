@@ -1,4 +1,11 @@
 @use './variables';
+@use '../../mehmoh/src/styles/colors';
+@use '../../mehmoh/src/styles/constants';
+@use '../../mehmoh/src/styles/animations';
+@use '../../mehmoh/src/styles/elements';
+@use '../../mehmoh/src/components/VertexPolygon';
+@use '../../mehmoh/src/components/utility/Vertex';
+
 
 $bgTransparent: rgba(51,51,51,0);
 
@@ -53,6 +60,9 @@ $bgTransparent: rgba(51,51,51,0);
 }
 
 #projects-section {
+  overflow: hidden;
+  width: 100%;
+
   h2 {
     padding: variables.$spaceLarge;
     font-size: 36px;
@@ -188,6 +198,100 @@ $bgTransparent: rgba(51,51,51,0);
       img {
         width: 120px;
         transform: rotate(-10deg) translate(-10px, 10px);
+      }
+    }
+  }
+}
+$fontFamilyRegular: 'regular';
+$fontFamilyBold: 'bold';
+$fontFamilyLight: 'light';
+@font-face {
+  font-family: $fontFamilyBold;
+  src: url('/mehmoh/fonts/Montserrat-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: $fontFamilyRegular;
+  src: url('/mehmoh/fonts/Montserrat-Medium.ttf');
+}
+
+@font-face {
+  font-family: $fontFamilyLight;
+  src: url('/mehmoh/fonts/Montserrat-Light.ttf');
+}
+
+
+#mehmoh {
+  --active-color: #{colors.$activeColor};
+  --vertex-color: #{colors.$mediumGrey};
+  --secondary-color: #{colors.$secondaryColor};
+  --vertex-radius: 3em;
+  --vertex-diameter: 6em;
+
+  @include variables.small-and-below() {
+    --vertex-radius: 2em;
+    --vertex-diameter: 4em;
+  }
+
+  background-color: colors.$backgroundColor;
+  color: colors.$copyColor;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    opacity: 0.5;
+    background-image: linear-gradient(135deg, var(--secondary-color) 0%, transparent 35%, transparent 65%, var(--active-color) 100%);
+  }
+
+  @include variables.extra-large-and-above() {
+    .project-item-inner {
+      background-color: colors.$backgroundColor;
+      box-shadow: 0 0 100px 100px colors.$backgroundColor;
+    }
+  }
+
+  .text-side {
+    h3 {
+      font-family: $fontFamilyLight;
+      font-size:72px !important;
+
+      span {
+        color: colors.$activeColor;
+        &.secondary {
+          color: colors.$secondaryColor;
+        }
+      }
+    }
+
+    p {
+      font-family: $fontFamilyRegular;
+      font-size: 1.2em;
+      line-height: 1.5em;
+    }
+  }
+
+  .graphic-side-inner {
+    margin:0 auto;
+    padding-top: 70%;
+    width:70%;
+    position: relative;
+    animation: rotation 5s infinite linear;
+
+    .vertex {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: transparent;
+
+      &:hover {
+        &:after {
+          opacity: 0;
+        }
+
+        @include elements.shadow1(colors.$activeColor);
+        background-color: var(--active-color);
       }
     }
   }
@@ -355,4 +459,14 @@ $colorWordlesHUD: rgba(58, 55, 36, 0.95);
     color: rgb(255, 255, 255, 0.1);
   }
 
+}
+
+
+@keyframes shrink {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.5);
+  }
 }

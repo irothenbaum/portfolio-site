@@ -1,3 +1,229 @@
+/* primary */
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@font-face {
+  font-family: "bold";
+  src: url("/public/fonts/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "regular";
+  src: url("/public/fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: "light";
+  src: url("/public/fonts/Montserrat-Light.ttf");
+}
+.vertex-polygon {
+  max-width: calc(5 * var(--vertex-diameter));
+  width: 100%;
+  /*
+     0
+  2    1
+  */
+  /*
+  0   1
+
+  3   2
+   */
+  /*
+      0
+   4     1
+    3   2
+   */
+  /*
+     0     1
+
+  5          2
+
+    4     3
+   */
+}
+.vertex-polygon .vertex-polygon-inner {
+  position: relative;
+  padding-top: 100%;
+  width: 100%;
+  animation: rotation2 0.4s ease-out;
+}
+.vertex-polygon .vertex {
+  position: absolute;
+  cursor: pointer;
+}
+.vertex-polygon.vp-count-3 .vp-vertex-0 {
+  top: 0;
+  left: calc(50% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-3 .vp-vertex-1 {
+  top: calc(100% - var(--vertex-diameter));
+  left: calc(100% - var(--vertex-diameter));
+}
+.vertex-polygon.vp-count-3 .vp-vertex-2 {
+  top: calc(100% - var(--vertex-diameter));
+  left: 0;
+}
+.vertex-polygon.vp-count-4 .vp-vertex-0 {
+  top: 0;
+  left: 0;
+}
+.vertex-polygon.vp-count-4 .vp-vertex-1 {
+  top: 0;
+  left: calc(100% - var(--vertex-diameter));
+}
+.vertex-polygon.vp-count-4 .vp-vertex-2 {
+  top: calc(100% - var(--vertex-diameter));
+  left: calc(100% - var(--vertex-diameter));
+}
+.vertex-polygon.vp-count-4 .vp-vertex-3 {
+  top: calc(100% - var(--vertex-diameter));
+  left: 0;
+}
+.vertex-polygon.vp-count-5 .vp-vertex-0 {
+  top: 0;
+  left: calc(50% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-5 .vp-vertex-1 {
+  top: calc(45% - var(--vertex-radius));
+  left: calc(100% - var(--vertex-diameter));
+}
+.vertex-polygon.vp-count-5 .vp-vertex-2 {
+  top: calc(100% - var(--vertex-diameter));
+  left: calc(75% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-5 .vp-vertex-3 {
+  top: calc(100% - var(--vertex-diameter));
+  left: calc(25% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-5 .vp-vertex-4 {
+  top: calc(45% - var(--vertex-radius));
+  left: 0;
+}
+.vertex-polygon.vp-count-6 .vp-vertex-0, .vertex-polygon.vp-count-7 .vp-vertex-0, .vertex-polygon.vp-count-8 .vp-vertex-0 {
+  top: 0;
+  left: calc(25% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-6 .vp-vertex-1, .vertex-polygon.vp-count-7 .vp-vertex-1, .vertex-polygon.vp-count-8 .vp-vertex-1 {
+  top: 0;
+  left: calc(75% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-6 .vp-vertex-2, .vertex-polygon.vp-count-7 .vp-vertex-2, .vertex-polygon.vp-count-8 .vp-vertex-2 {
+  top: calc(50% - var(--vertex-radius));
+  left: calc(100% - var(--vertex-diameter));
+}
+.vertex-polygon.vp-count-6 .vp-vertex-3, .vertex-polygon.vp-count-7 .vp-vertex-3, .vertex-polygon.vp-count-8 .vp-vertex-3 {
+  top: calc(100% - var(--vertex-diameter));
+  left: calc(75% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-6 .vp-vertex-4, .vertex-polygon.vp-count-7 .vp-vertex-4, .vertex-polygon.vp-count-8 .vp-vertex-4 {
+  top: calc(100% - var(--vertex-diameter));
+  left: calc(25% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-6 .vp-vertex-5, .vertex-polygon.vp-count-7 .vp-vertex-5, .vertex-polygon.vp-count-8 .vp-vertex-5 {
+  top: calc(50% - var(--vertex-radius));
+  left: 0;
+}
+.vertex-polygon.vp-count-6 .vp-vertex-6, .vertex-polygon.vp-count-7 .vp-vertex-6, .vertex-polygon.vp-count-8 .vp-vertex-6 {
+  top: calc(50% - var(--vertex-radius));
+  left: calc(50% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-8 .vp-vertex-6 {
+  top: calc(30% - var(--vertex-radius));
+  left: calc(50% - var(--vertex-radius));
+}
+.vertex-polygon.vp-count-8 .vp-vertex-7 {
+  top: calc(70% - var(--vertex-radius));
+  left: calc(50% - var(--vertex-radius));
+}
+.vertex-polygon.collapsed .vertex-polygon-inner {
+  animation: rotation1 0.4s ease-out;
+}
+.vertex-polygon.collapsed .vertex {
+  top: calc(50% - 0.5em);
+  left: calc(50% - 0.5em);
+  height: 1em;
+  width: 1em;
+  box-shadow: none;
+}
+.vertex-polygon.collapsed .vertex:after, .vertex-polygon.collapsed .vertex:before {
+  opacity: 0;
+}
+
+@keyframes rotation1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+@keyframes rotation2 {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.vertex {
+  box-shadow: 0 0 0.5em 0 rgba(0, 0, 0, 0.25);
+  width: var(--vertex-diameter);
+  height: var(--vertex-diameter);
+  border-radius: 50%;
+  background-color: var(--vertex-color);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease-out, background-color 0.2s ease-in-out;
+}
+.vertex:before, .vertex:after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s ease-in-out;
+  opacity: 1;
+}
+.vertex:before {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.5) 0%, transparent 60%);
+}
+.vertex:after {
+  background-image: radial-gradient(transparent 20%, rgba(0, 0, 0, 0.25) 100%);
+}
+.vertex.active {
+  box-shadow: 0 0 0.5em 0 #00daff;
+  background-color: var(--active-color);
+}
+.vertex.active:after {
+  opacity: 0;
+}
+.vertex.active.secondary {
+  box-shadow: 0 0 0.5em 0 #ff9700;
+  background-color: var(--secondary-color);
+}
+.vertex.disabled {
+  cursor: not-allowed;
+  box-shadow: 0 0 0.5em 0 transparent;
+  background-color: rgba(0, 0, 0, 0.25);
+  background-image: none;
+}
+.vertex.disabled:before {
+  opacity: 0;
+}
+
 #hero {
   width: 100%;
   height: 100vh;
@@ -43,6 +269,10 @@
   color: #fff;
 }
 
+#projects-section {
+  overflow: hidden;
+  width: 100%;
+}
 #projects-section h2 {
   padding: 40px;
   font-size: 36px;
@@ -174,6 +404,83 @@
 #math-attack .text-side-inner h3 img {
   width: 120px;
   transform: rotate(-10deg) translate(-10px, 10px);
+}
+
+@font-face {
+  font-family: "bold";
+  src: url("/mehmoh/fonts/Montserrat-ExtraBold.ttf");
+}
+@font-face {
+  font-family: "regular";
+  src: url("/mehmoh/fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: "light";
+  src: url("/mehmoh/fonts/Montserrat-Light.ttf");
+}
+#mehmoh {
+  --active-color: #00daff;
+  --vertex-color: #cdcdcd;
+  --secondary-color: #ff9700;
+  --vertex-radius: 3em;
+  --vertex-diameter: 6em;
+  background-color: #303541;
+  color: #eeeeee;
+}
+@media screen and (max-width: 600px) {
+  #mehmoh {
+    --vertex-radius: 2em;
+    --vertex-diameter: 4em;
+  }
+}
+#mehmoh:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  opacity: 0.5;
+  background-image: linear-gradient(135deg, var(--secondary-color) 0%, transparent 35%, transparent 65%, var(--active-color) 100%);
+}
+@media screen and (min-width: 2040px) {
+  #mehmoh .project-item-inner {
+    background-color: #303541;
+    box-shadow: 0 0 100px 100px #303541;
+  }
+}
+#mehmoh .text-side h3 {
+  font-family: "light";
+  font-size: 72px !important;
+}
+#mehmoh .text-side h3 span {
+  color: #00daff;
+}
+#mehmoh .text-side h3 span.secondary {
+  color: #ff9700;
+}
+#mehmoh .text-side p {
+  font-family: "regular";
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+#mehmoh .graphic-side-inner {
+  margin: 0 auto;
+  padding-top: 70%;
+  width: 70%;
+  position: relative;
+  animation: rotation 5s infinite linear;
+}
+#mehmoh .graphic-side-inner .vertex {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+#mehmoh .graphic-side-inner .vertex:hover {
+  box-shadow: 0 0 0.5em 0 #00daff;
+  background-color: var(--active-color);
+}
+#mehmoh .graphic-side-inner .vertex:hover:after {
+  opacity: 0;
 }
 
 #wordles-with-friends {
@@ -316,6 +623,14 @@
   }
   100% {
     color: rgba(255, 255, 255, 0.1);
+  }
+}
+@keyframes shrink {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.5);
   }
 }
 
