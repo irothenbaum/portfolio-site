@@ -7,7 +7,15 @@
 @use '../../mehmoh/src/components/utility/Vertex';
 
 
-$bgTransparent: rgba(51,51,51,0);
+$colorWordles: #bbac4a;
+$colorWordlesDark: #776d2d;
+$colorWordlesHUD: rgba(58, 55, 36, 0.95);
+
+$colorBacklitBackground: #1f1f28;
+
+html, body {
+  scroll-behavior: smooth;
+}
 
 #hero {
   width: 100%;
@@ -56,6 +64,80 @@ $bgTransparent: rgba(51,51,51,0);
     width: 100px;
     height: auto;
     color: variables.$textColor;
+  }
+}
+
+#projects-summary {
+  position: sticky;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: variables.$bgColor;
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  a {
+    flex: 2;
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding: variables.$spaceSmall;
+    cursor: pointer;
+    position: relative;
+    filter: grayscale(0.6);
+
+    &:before {
+      content: '';
+      background-color: variables.$bgColor;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+    }
+
+    &, &:before {
+      transition: all variables.$transitionTiming;
+    }
+
+    &:hover {
+      &:before {
+        opacity: 0;
+      }
+      filter: grayscale(0);
+      flex: 3;
+    }
+
+    img {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      margin: 0 auto;
+    }
+
+    &#summary-mehmoh {
+      background-image: linear-gradient(135deg, colors.$secondaryColor -50%, transparent 35%, transparent 65%, colors.$activeColor 150%);
+      background-color: colors.$backgroundColor;
+    }
+
+    &#summary-math-attack {
+      background-color: colors.$white;
+    }
+    &#summary-wordles-with-friends {
+      background-color: $colorWordlesHUD;
+    }
+    &#summary-backlit {
+      background-color: $colorBacklitBackground;
+    }
   }
 }
 
@@ -298,9 +380,6 @@ $fontFamilyLight: 'light';
 }
 
 
-$colorWordles: #bbac4a;
-$colorWordlesDark: #776d2d;
-$colorWordlesHUD: rgba(58, 55, 36, 0.95);
 #wordles-with-friends {
   background-image: url('/static/img/wordles_graphic.svg');
   background-position: center center;
@@ -402,7 +481,7 @@ $colorWordlesHUD: rgba(58, 55, 36, 0.95);
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: #1f1f28;
+    background-color: $colorBacklitBackground;
     padding: variables.$spaceNormal;
 
     a {

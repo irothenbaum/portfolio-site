@@ -4,6 +4,7 @@
     $heroText = $('#animate-type')
 
     animatedHeroText()
+    configureNavBar()
     configureBacklitSection()
   })
 
@@ -37,6 +38,17 @@
     }
 
     setTimeout(recurse, 1000)
+  }
+
+  function configureNavBar() {
+    const $navBar = $('#projects-summary')
+    $(window).on('scroll', function(e) {
+      if (e > window.innerHeight) {
+        $navBar.addClass('sticky')
+      } else {
+        $navBar.removeClass('sticky')
+      }
+    })
   }
 
   function configureBacklitSection() {
