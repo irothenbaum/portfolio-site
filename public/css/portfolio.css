@@ -273,8 +273,14 @@ html, body {
   color: #fff;
 }
 
+#projects-summary-container {
+  height: 60px;
+  width: 100%;
+  position: relative;
+}
+
 #projects-summary {
-  position: sticky;
+  position: absolute;
   height: 60px;
   width: 100%;
   display: flex;
@@ -290,6 +296,7 @@ html, body {
 }
 #projects-summary a {
   flex: 2;
+  overflow: hidden;
   display: block;
   height: 100%;
   width: 100%;
@@ -312,12 +319,16 @@ html, body {
 #projects-summary a, #projects-summary a:before {
   transition: all 0.2s ease-out;
 }
-#projects-summary a:hover {
+#projects-summary a:hover, #projects-summary a.active {
   filter: grayscale(0);
   flex: 3;
 }
-#projects-summary a:hover:before {
+#projects-summary a:hover:before, #projects-summary a.active:before {
   opacity: 0;
+}
+#projects-summary a:hover#summary-backlit i, #projects-summary a.active#summary-backlit i {
+  color: #e1ffa6;
+  text-shadow: 0 0 5px white, 0 0 20px white;
 }
 #projects-summary a img {
   position: relative;
@@ -337,6 +348,10 @@ html, body {
 }
 #projects-summary a#summary-backlit {
   background-color: #1f1f28;
+}
+#projects-summary a#summary-backlit i {
+  color: #3c4846;
+  font-size: 40px;
 }
 
 #projects-section {
@@ -582,10 +597,10 @@ html, body {
   text-align: center;
 }
 #backlit #backlit-button {
-  z-index: 10;
   font-size: 12rem;
-  color: #3c4846;
   box-shadow: 0 0 0 0 white;
+  color: #3c4846;
+  z-index: 10;
 }
 #backlit #backlit-button:hover {
   transition: box-shadow 0.1s 0.05s ease-out;

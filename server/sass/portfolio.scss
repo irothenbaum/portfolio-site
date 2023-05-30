@@ -12,6 +12,8 @@ $colorWordlesDark: #776d2d;
 $colorWordlesHUD: rgba(58, 55, 36, 0.95);
 
 $colorBacklitBackground: #1f1f28;
+$colorBacklitLight: #e1ffa6;
+$colorBacklitOff: #3c4846;
 
 html, body {
   scroll-behavior: smooth;
@@ -67,8 +69,14 @@ html, body {
   }
 }
 
+#projects-summary-container {
+  height: 60px;
+  width: 100%;
+  position: relative;
+}
+
 #projects-summary {
-  position: sticky;
+  position: absolute;
   height: 60px;
   width: 100%;
   display: flex;
@@ -85,6 +93,7 @@ html, body {
 
   a {
     flex: 2;
+    overflow: hidden;
     display: block;
     height: 100%;
     width: 100%;
@@ -109,12 +118,19 @@ html, body {
       transition: all variables.$transitionTiming;
     }
 
-    &:hover {
+    &:hover, &.active {
       &:before {
         opacity: 0;
       }
       filter: grayscale(0);
       flex: 3;
+
+      &#summary-backlit {
+        i {
+          color: $colorBacklitLight;
+          text-shadow: 0 0 5px white, 0 0 20px white;
+        }
+      }
     }
 
     img {
@@ -137,6 +153,11 @@ html, body {
     }
     &#summary-backlit {
       background-color: $colorBacklitBackground;
+
+      i {
+        color: $colorBacklitOff;
+        font-size: 40px;
+      }
     }
   }
 }
@@ -402,7 +423,7 @@ $fontFamilyLight: 'light';
 
   &.light {
     transition: background-color 0.2s ease-out;
-    background-color: #e1ffa6;
+    background-color: $colorBacklitLight;
 
     .text-side-inner {
       color: black;
@@ -414,12 +435,10 @@ $fontFamilyLight: 'light';
   }
 
   #backlit-button {
-    z-index: 10;
-    $lightColor: #e1ffa6;
-
     font-size: 12rem;
-    color: #3c4846;
     box-shadow: 0 0 0 0 white;
+    color: $colorBacklitOff;
+    z-index: 10;
 
     &:hover {
       transition: box-shadow 0.1s 0.05s ease-out;

@@ -42,11 +42,33 @@
 
   function configureNavBar() {
     const $navBar = $('#projects-summary')
-    $(window).on('scroll', function(e) {
-      if (e > window.innerHeight) {
+    const $window = $(window)
+
+    // should resize on resize
+    const breakPoints = []
+    const $portfolioPieces = $('#projects-section ul li')
+    $portfolioPieces.each((i, e) => {
+      const $elem = $(e)
+      breakPoints.push({top: $elem.offset().top, bottom: $elem.innerHeight() + $elem.offset().top})
+    })
+
+    $window.on('scroll', () => {
+      const scrollPos = $window.scrollTop()
+      if (scrollPos > window.innerHeight) {
         $navBar.addClass('sticky')
       } else {
         $navBar.removeClass('sticky')
+      }
+
+      const scrollCenter = scrollPos + window.innerHeight / 2
+      const activeIndex = breakPoints.findIndex(points => {
+        return scrollCenter >= points.top && scrollCenter <= points.bottom
+      })
+
+      $navBar.find('a').removeClass('active')
+
+      if (activeIndex >= 0) {
+        $navBar.find('a').eq(activeIndex).addClass('active')
       }
     })
   }
