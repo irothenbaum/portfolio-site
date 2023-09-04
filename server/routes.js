@@ -7,6 +7,7 @@ const path = require('path')
 const GameController = require('./controllers/GameController')
 const vhost = require('vhost')
 const {MollyAndIsaacSittingInATree} = require('./virtualHosts')
+const AsciiController = require('./controllers/AsciiController')
 
 // ----------------------------------------------------------------------
 // WEDDING WEBSITE
@@ -26,7 +27,7 @@ router.get('/math-attack', asyncHandler(PortfolioController.getPrivacyPolicy))
 // WORDLES WITH FRIENDS
 
 // the App landing page:
-router.use(
+router.get(
   '/wordles-with-friends',
   asyncHandler(PortfolioController.getWordleGame),
 )
@@ -40,7 +41,10 @@ router.use(
 
 // ----------------------------------------------------------------------
 // MEH MOH
-router.use('/mehmoh', express.static(path.join(__dirname, '..', 'mehmoh', 'dist')),)
+router.use(
+  '/mehmoh',
+  express.static(path.join(__dirname, '..', 'mehmoh', 'dist')),
+)
 
 // ----------------------------------------------------------------------
 // VERSUS PLATFORM
@@ -60,6 +64,11 @@ router.ws(
   '/versus/:code/join/:recoveryCode',
   asyncHandler(GameController.socketJoinGame),
 )
+
+// ----------------------------------------------------------------------
+// ASCII
+router.get('/ascii', asyncHandler(AsciiController.getPage))
+router.post('/ascii', asyncHandler(AsciiController.postGenerate))
 
 // ----------------------------------------------------------------------
 // CERTBOT

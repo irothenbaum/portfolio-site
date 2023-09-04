@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const socketServer = require('./helpers/SocketServerSingleton')
 const path = require('path')
 const fs = require('fs')
@@ -31,7 +32,10 @@ if (protocol === 'http') {
   server = require('http').createServer(app)
 } else if (protocol === 'https') {
   const defaultOptions = getOptionsFromSSLConfig(sslConfig)
-  const weddingWebsiteOptions = {hostname:MollyAndIsaacSittingInATree, ...getOptionsFromSSLConfig(sslConfig.vhosts[MollyAndIsaacSittingInATree])}
+  const weddingWebsiteOptions = {
+    hostname: MollyAndIsaacSittingInATree,
+    ...getOptionsFromSSLConfig(sslConfig.vhosts[MollyAndIsaacSittingInATree]),
+  }
 
   server = vhttps.createServer(defaultOptions, [weddingWebsiteOptions], app)
 
@@ -51,6 +55,7 @@ if (protocol === 'http') {
 
 socketServer(app, server)
 
+app.use(bodyParser.urlencoded({extended: true}))
 app.use('/static', express.static(path.join(__dirname, '..', 'public')))
 
 // load our routes
@@ -61,7 +66,6 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500).send(err.message)
 })
-
 
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`)

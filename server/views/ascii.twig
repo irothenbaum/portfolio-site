@@ -1,0 +1,41 @@
+{% extends "./default.twig" %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/static/css/ascii.css"/>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div>
+            <label for="file-upload">Upload file</label>
+            <input type="file" id="file-upload" />
+        </div>
+        <div>
+            <label for="file-url">File url</label>
+            <input type="text" id="file-url" placeholder="File url" />
+        </div>
+
+        <div>
+            <label for="output-width">Width</label>
+            <input type="number" id="output-width" placeholder="Output width" value="32" />
+        </div>
+
+        <div>
+            <label for="text-only">Text only</label>
+            <input type="checkbox" id="text-only" checked />
+        </div>
+
+        <div>
+            <button id="generate-button">Generate</button>
+        </div>
+
+        <div id="output" style="display: none;"></div>
+        <textarea id="output-text"></textarea>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/static/js/ascii.js"></script>
+{% endblock %}
