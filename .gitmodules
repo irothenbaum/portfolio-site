@@ -7,3 +7,6 @@
 [submodule "mehmoh"]
 	path = mehmoh
 	url = git@github.com:irothenbaum/mehmoh.git
+[submodule "game-clock"]
+	path = game-clock
+	url = https://github.com/irothenbaum/game-clock

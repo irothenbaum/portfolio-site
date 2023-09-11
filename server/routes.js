@@ -47,6 +47,13 @@ router.use(
 )
 
 // ----------------------------------------------------------------------
+// GAME CLOCK
+router.use(
+  '/game-clock',
+  express.static(path.join(__dirname, '..', 'game-clock', 'dist')),
+)
+
+// ----------------------------------------------------------------------
 // VERSUS PLATFORM
 
 // looks like optional params syntax is not supported, so we list out all possibilities
