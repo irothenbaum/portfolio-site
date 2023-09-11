@@ -20,18 +20,22 @@ class AsciiController {
    * @return {Promise<void>}
    */
   static async postGenerate(req, res, next) {
-    const imagePath = req.body.q
+    const imagePath = req.body.url
 
     if (!imagePath) {
       res.status(422).send('Missing required query parameter: q')
       return
     }
 
-    const outputWidth = parseInt(req.body.w) || DEFAULT_WIDTH
+    const outputWidth = parseInt(req.body.width) || DEFAULT_WIDTH
     try {
       let fetchedImage = await fetch(imagePath)
       let resBuffer = Buffer.from(await fetchedImage.arrayBuffer())
-      const output = await imageToAscii(resBuffer, outputWidth)
+      const output = await imageToAscii(
+        resBuffer,
+        outputWidth,
+        !!req.body.invert,
+      )
 
       res.json({
         html: asciiImageToHTML(output),

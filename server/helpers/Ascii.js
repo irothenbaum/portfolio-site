@@ -7,9 +7,10 @@ const ASCII_CHARS =
 /**
  * @param {Buffer} imageData
  * @param {number} outputWidth
+ * @param {boolean?} invertBrightness
  * @returns {Promise<AsciiImage>}
  */
-async function imageToAscii(imageData, outputWidth) {
+async function imageToAscii(imageData, outputWidth, invertBrightness = false) {
   // first we load the image
   const img = await sharp(imageData)
 
@@ -46,7 +47,11 @@ async function imageToAscii(imageData, outputWidth) {
   const interval = ASCII_CHARS.length / brightnessRange
 
   const retVal = [...brightnessArray].map((pixel, index) => {
-    const thisCharIndex = Math.floor((pixel - minBrightness) * interval)
+    let thisCharIndex = Math.floor((pixel - minBrightness) * interval)
+    // if we're inverting brightness, we change our index to count from the last element
+    if (invertBrightness) {
+      thisCharIndex = ASCII_CHARS.length - 1 - thisCharIndex
+    }
     const thisChar =
       ASCII_CHARS[Math.min(ASCII_CHARS.length - 1, Math.max(0, thisCharIndex))]
 

@@ -1,7 +1,9 @@
 #output, #output-text {
+  background-color: #fff;
   margin-top: 40px;
   font-family: "Courier New", Courier, monospace;
   white-space: pre;
+  line-height: 0.8em;
 }
 
 /*# sourceMappingURL=ascii.css.map */

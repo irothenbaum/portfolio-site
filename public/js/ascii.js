@@ -6,6 +6,7 @@
   let $outputWidth
   let $textOnly
   let $outputText
+  let $invertInput
 
   $(window.document).ready(() => {
     $output = $('#output')
@@ -15,6 +16,7 @@
     $outputWidth = $('#output-width')
     $textOnly = $('#text-only')
     $outputText = $('#output-text')
+    $invertInput = $('#invert-brightness')
 
     $textOnly.on('change', () => {
       if ($textOnly.is(':checked')) {
@@ -35,8 +37,9 @@
         url: window.location,
         method: 'POST',
         data: {
-          q: $fileUrl.val(),
-          w: width,
+          url: $fileUrl.val(),
+          width: width,
+          invert: $invertInput.is(':checked'),
         },
         dataType: 'json',
       })

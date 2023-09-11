@@ -1,7 +1,9 @@
 @use './variables';
 
 #output, #output-text {
+  background-color: variables.$textColor;
   margin-top: variables.$spaceLarge;
   font-family: "Courier New", Courier, monospace;
   white-space: pre;
+  line-height: 0.8em;
 }
