@@ -10,3 +10,6 @@
 [submodule "game-clock"]
 	path = game-clock
 	url = https://github.com/irothenbaum/game-clock
+[submodule "premove"]
+	path = premove
+	url = git@github.com:irothenbaum/premove.git

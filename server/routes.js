@@ -54,6 +54,13 @@ router.use(
 )
 
 // ----------------------------------------------------------------------
+// MEH MOH
+router.use(
+  '/premove',
+  express.static(path.join(__dirname, '..', 'premove', 'dist')),
+)
+
+// ----------------------------------------------------------------------
 // VERSUS PLATFORM
 
 // looks like optional params syntax is not supported, so we list out all possibilities
