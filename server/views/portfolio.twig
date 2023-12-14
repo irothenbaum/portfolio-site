@@ -8,11 +8,11 @@
 {% block content %}
     <div id="hero">
         <div>
-            <h1>404 Not Found</h1>
+            <h1>404<span>Not Found</span></h1>
         </div>
 
         <div id="hero-bottom">
-            <h2><span id="animate-type">Unless you were looking for this</span><span class="slow-pulse">:</span></h2>
+            <h2><span id="animate-type">just kidding</span><span class="slow-pulse"></span></h2>
         </div>
 
         <div id="down-arrow">
@@ -21,7 +21,10 @@
     </div>
 
     <div id="projects-summary-container">
-        <div id="projects-summary">
+        <div id="projects-summary" style="min-width: {{ 4 * 120 }}px;">
+            <a href="#game-clock" id="summary-game-clock">
+                <img alt="game clock logo" src="/game-clock/logo.svg"/>
+            </a>
             <a href="#mehmoh" id="summary-mehmoh">
                 <img alt="mehmoh logo" src="/mehmoh/logo.svg"/>
             </a>
@@ -39,6 +42,55 @@
 
     <div id="projects-section">
         <ul>
+            <li id="premove">
+                <div class="project-item-inner">
+                    <div class="text-side">
+                        <div class="text-side-inner">
+                            <h3>Premove</h3>
+                            <p>
+                                A daily challenge game for chess players.
+                                Can you clear all the pawns off the board before they promote? You'll have to queue all your moves up front to find out.
+                                Play easy, moderate, and hard modes to test your skills and challenge your friends.
+                            </p>
+
+                            <div class="project-cta-container">
+                                <a target="_blank" href="/premove">
+                                    <button>Play</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graphic-side">
+
+                    </div>
+                </div>
+            </li>
+
+            <li id="game-clock">
+                <div class="project-item-inner">
+                    <div class="graphic-side">
+                        <div class="game-clock-circle">
+                            <div class="game-clock-hand"></div>
+                        </div>
+                    </div>
+                    <div class="text-side">
+                        <div class="text-side-inner">
+                            <h3>Game Clock</h3>
+                            <p>
+                                A fully configurable score board to be used at any sporting event.
+                                Create custom commands, key bindings, and save templates for easy reuse.
+                            </p>
+
+                            <div class="project-cta-container">
+                                <a target="_blank" href="/game-clock">
+                                    <button>Get started</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
             <li id="mehmoh">
                 <div class="project-item-inner">
                     <div class="text-side">

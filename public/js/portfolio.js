@@ -30,18 +30,18 @@
 
       if (nextText.length === text.length) {
         $heroText.next().show()
-        setTimeout(() => $('#down-arrow').show(), 1000)
+        setTimeout(() => $('#down-arrow').show(), 500)
         return
       }
 
       setTimeout(recurse, Math.random() * 100 + 10)
     }
 
-    setTimeout(recurse, 1000)
+    setTimeout(recurse, 3000)
   }
 
   function configureNavBar() {
-    const $navBar = $('#projects-summary')
+    const $navBar = $('#projects-summary-container')
     const $window = $(window)
 
     // should resize on resize
@@ -49,7 +49,10 @@
     const $portfolioPieces = $('#projects-section ul li')
     $portfolioPieces.each((i, e) => {
       const $elem = $(e)
-      breakPoints.push({top: $elem.offset().top, bottom: $elem.innerHeight() + $elem.offset().top})
+      breakPoints.push({
+        top: $elem.offset().top,
+        bottom: $elem.innerHeight() + $elem.offset().top,
+      })
     })
 
     $window.on('scroll', () => {
