@@ -349,11 +349,11 @@ html, body {
   background-color: variables.$lightGrey;
   background-position: center center;
   background-repeat: repeat;
-  background-size: 20%;
+  background-size: 15%;
   background-image: url('/static/img/premove_wallpaper.png');
 
   @include variables.medium-and-below {
-    background-size: 40%;
+    background-size: 35%;
   }
 
   @include variables.small-and-below {
@@ -362,16 +362,24 @@ html, body {
 
   .text-side-inner {
     border-radius: 12px;
-    background-color: #556b50;
+    background-color: #333;
     box-shadow: 5px 10px 30px 10px variables.$shadowSoft;
     padding: 2px 16px 16px 2px !important;
+
+    @include variables.medium-and-below {
+      margin: variables.$spaceLarge;
+    }
+
+    @include variables.small-and-below {
+      margin: variables.$spaceSmall;
+    }
 
     & > div.depth {
       border-radius: 10px;
       height: 100%;
       width: 100%;
       padding: variables.$spaceNormal;
-      background-color: #62805c;
+      background-color: variables.$nearBlack;
       color: variables.$textColor;
     }
   }
