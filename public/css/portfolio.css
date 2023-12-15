@@ -343,11 +343,20 @@ html, body {
   height: 100%;
   margin: 0 auto;
 }
+#projects-summary a i {
+  font-size: 40px;
+}
+#projects-summary a#summary-premove {
+  background-color: #f3f2ef;
+}
+#projects-summary a#summary-premove i {
+  color: #444444;
+}
 #projects-summary a#summary-game-clock {
   background-color: #ffffff;
 }
-#projects-summary a#summary-game-clock img {
-  z-index: 1;
+#projects-summary a#summary-game-clock i {
+  color: #161614;
 }
 #projects-summary a#summary-mehmoh {
   background-image: linear-gradient(135deg, #ff9700 -50%, transparent 35%, transparent 65%, #00daff 150%);
@@ -364,7 +373,6 @@ html, body {
 }
 #projects-summary a#summary-backlit i {
   color: #3c4846;
-  font-size: 40px;
 }
 
 #projects-section {
@@ -421,6 +429,11 @@ html, body {
     flex-direction: column;
   }
 }
+@media screen and (max-width: 1024px) {
+  #projects-section ul li .project-item-inner.reverse {
+    flex-direction: column-reverse !important;
+  }
+}
 #projects-section ul li .project-item-inner > div {
   width: 100%;
 }
@@ -433,6 +446,7 @@ html, body {
   z-index: 2;
   width: 100%;
   max-width: 601px;
+  text-align: center;
   margin: 1rem;
 }
 #projects-section ul li .project-item-inner .graphic-side img {
@@ -481,8 +495,66 @@ html, body {
   background-color: #d4d4d4;
   background-position: center center;
   background-repeat: repeat;
-  background-size: 10%;
+  background-size: 20%;
   background-image: url("/static/img/premove_wallpaper.png");
+}
+#premove .graphic-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#premove .graphic-side .premove-box {
+  height: 20rem;
+  width: 20rem;
+  background-color: #d4d4d4;
+  border-radius: 12px;
+  box-shadow: 5px 10px 30px 10px rgba(22, 22, 20, 0.25);
+  padding: 2px 30px 30px 2px !important;
+}
+@media screen and (max-width: 600px) {
+  #premove .graphic-side .premove-box {
+    height: 16rem;
+    width: 16rem;
+  }
+}
+#premove .graphic-side .premove-box .premove-box-inner {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  background-color: #f3f2ef;
+  color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#premove .graphic-side .premove-box .premove-box-inner i {
+  font-size: 10rem;
+  color: #444444;
+}
+@media screen and (max-width: 1024px) {
+  #premove {
+    background-size: 40%;
+  }
+}
+@media screen and (max-width: 600px) {
+  #premove {
+    background-size: 60%;
+  }
+}
+#premove .text-side-inner {
+  border-radius: 12px;
+  background-color: #556b50;
+  box-shadow: 5px 10px 30px 10px rgba(22, 22, 20, 0.25);
+  padding: 2px 16px 16px 2px !important;
+}
+#premove .text-side-inner > div.depth {
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  background-color: #62805c;
+  color: #ffffff;
 }
 
 @keyframes tick {
@@ -646,11 +718,6 @@ html, body {
 }
 #wordles-with-friends .text-side-inner, #wordles-with-friends:before {
   background-color: rgba(58, 55, 36, 0.95);
-}
-@media screen and (max-width: 1024px) {
-  #wordles-with-friends .project-item-inner {
-    flex-direction: column-reverse !important;
-  }
 }
 
 #backlit {

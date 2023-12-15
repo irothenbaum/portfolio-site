@@ -148,10 +148,21 @@ html, body {
       margin: 0 auto;
     }
 
+    i {
+      font-size: 40px;
+    }
+
+    &#summary-premove {
+      background-color: variables.$offWhite;
+      i {
+        color: variables.$nearBlack;
+      }
+    }
+
     &#summary-game-clock {
       background-color: variables.$white;
-      img {
-        z-index: 1;
+      i {
+          color: variables.$black;
       }
     }
 
@@ -171,7 +182,6 @@ html, body {
 
       i {
         color: $colorBacklitOff;
-        font-size: 40px;
       }
     }
   }
@@ -213,6 +223,13 @@ html, body {
 
       .project-item-inner {
         @include variables.flex-row;
+
+        &.reverse {
+          @include variables.medium-and-below {
+            flex-direction: column-reverse !important;
+          }
+        }
+
         position: relative;
         z-index: 2;
         width: 100%;
@@ -233,6 +250,7 @@ html, body {
           z-index: 2;
           width: 100%;
           max-width: variables.$screenMediumMin;
+          text-align: center;
 
           img {
             width: 100%;
@@ -290,11 +308,73 @@ html, body {
 }
 
 #premove {
+  .graphic-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .premove-box {
+      height: 20rem;
+      width: 20rem;
+      background-color: variables.$lightGrey;
+      border-radius: 12px;
+      box-shadow: 5px 10px 30px 10px variables.$shadowSoft;
+      padding: 2px 30px 30px 2px !important;
+
+      @include variables.small-and-below {
+        height: 16rem;
+        width: 16rem;
+      }
+
+      .premove-box-inner {
+        height: 100%;
+        width: 100%;
+        padding: variables.$spaceNormal;
+        background-color: variables.$offWhite;
+        color: variables.$textColor;
+        border-radius: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 10rem;
+          color: variables.$nearBlack;
+        }
+      }
+    }
+  }
+
   background-color: variables.$lightGrey;
   background-position: center center;
   background-repeat: repeat;
-  background-size: 10%;
+  background-size: 20%;
   background-image: url('/static/img/premove_wallpaper.png');
+
+  @include variables.medium-and-below {
+    background-size: 40%;
+  }
+
+  @include variables.small-and-below {
+    background-size: 60%;
+  }
+
+  .text-side-inner {
+    border-radius: 12px;
+    background-color: #556b50;
+    box-shadow: 5px 10px 30px 10px variables.$shadowSoft;
+    padding: 2px 16px 16px 2px !important;
+
+    & > div.depth {
+      border-radius: 10px;
+      height: 100%;
+      width: 100%;
+      padding: variables.$spaceNormal;
+      background-color: #62805c;
+      color: variables.$textColor;
+    }
+  }
 }
 
 #game-clock {
@@ -483,12 +563,6 @@ $fontFamilyLight: 'light';
 
   .text-side-inner, &:before {
     background-color: $colorWordlesHUD;
-  }
-
-  .project-item-inner {
-    @include variables.medium-and-below {
-      flex-direction: column-reverse !important;
-    }
   }
 }
 
