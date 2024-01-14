@@ -6,7 +6,10 @@ const PortfolioController = require('./controllers/PortfolioController')
 const path = require('path')
 const GameController = require('./controllers/GameController')
 const vhost = require('vhost')
-const {MollyAndIsaacSittingInATree} = require('./virtualHosts')
+const {
+  MollyAndIsaacSittingInATree,
+  TeamSpencerWaterPolo,
+} = require('./virtualHosts')
 const AsciiController = require('./controllers/AsciiController')
 
 // ----------------------------------------------------------------------
@@ -15,7 +18,13 @@ const MollyAndIsaacSittingInATreeSite = express.static(
   path.join(__dirname, '..', 'mollyandisaacsittinginatree'),
 )
 router.use(vhost(MollyAndIsaacSittingInATree, MollyAndIsaacSittingInATreeSite))
-router.use('/mollyandisaacsittinginatree', MollyAndIsaacSittingInATreeSite)
+
+// ----------------------------------------------------------------------
+// Team Spencer Water Polo website
+const TeamSpencerWaterPoloSite = express.static(
+  path.join(__dirname, '..', 'teamspencer'),
+)
+router.use(vhost(TeamSpencerWaterPolo, TeamSpencerWaterPoloSite))
 
 // ----------------------------------------------------------------------
 

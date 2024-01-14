@@ -1,3 +1,4 @@
 module.exports = {
-  MollyAndIsaacSittingInATree: 'mollyandisaacsittinginatree.com'
+  MollyAndIsaacSittingInATree: 'mollyandisaacsittinginatree.com',
+  TeamSpencerWaterPolo: 'teamspencerwaterpolo.com',
 }

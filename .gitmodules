@@ -13,3 +13,6 @@
 [submodule "premove"]
 	path = premove
 	url = git@github.com:irothenbaum/premove.git
+[submodule "teamspencer"]
+	path = teamspencer
+	url = git@github.com:irothenbaum/teamspencer.git
