@@ -8,6 +8,11 @@
       "cert": "/etc/letsencrypt/live/mollyandisaacsittinginatree.com/fullchain.pem",
       "key": "/etc/letsencrypt/live/mollyandisaacsittinginatree.com/privkey.pem",
       "chain": ""
+    },
+    "teamspencerwaterpolo.com": {
+      "cert": "/etc/letsencrypt/live/teamspencerwaterpolo.com/fullchain.pem",
+      "key": "/etc/letsencrypt/live/teamspencerwaterpolo.com/privkey.pem",
+      "chain": ""
     }
   }
 }

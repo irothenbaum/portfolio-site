@@ -5,7 +5,10 @@ const path = require('path')
 const fs = require('fs')
 const sslConfig = require('./sslConfig.json')
 const vhttps = require('vhttps')
-const {MollyAndIsaacSittingInATree} = require('./virtualHosts')
+const {
+  MollyAndIsaacSittingInATree,
+  TeamSpencerWaterPolo,
+} = require('./virtualHosts')
 
 /**
  * @param {{key: string, cert: string, ca?: string}} conf
@@ -36,8 +39,16 @@ if (protocol === 'http') {
     hostname: MollyAndIsaacSittingInATree,
     ...getOptionsFromSSLConfig(sslConfig.vhosts[MollyAndIsaacSittingInATree]),
   }
+  const teamSpencerWebsiteOptions = {
+    hostname: TeamSpencerWaterPolo,
+    ...getOptionsFromSSLConfig(sslConfig.vhosts[TeamSpencerWaterPolo]),
+  }
 
-  server = vhttps.createServer(defaultOptions, [weddingWebsiteOptions], app)
+  server = vhttps.createServer(
+    defaultOptions,
+    [weddingWebsiteOptions, teamSpencerWebsiteOptions],
+    app,
+  )
 
   // force https
   let httpApp = express()
