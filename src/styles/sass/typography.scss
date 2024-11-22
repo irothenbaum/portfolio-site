@@ -1,0 +1,40 @@
+@use "./constants";
+
+$fontFamilyBody: 'raleway-regular';
+$fontFamilyBodyBold: 'raleway-bold';
+
+$lineHeightBody: 1.5em;
+
+@font-face {
+  font-family: $fontFamilyBody;
+  src: url('../fonts/raleway-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: $fontFamilyBodyBold;
+  src: url('../fonts/raleway-bold.ttf') format('truetype');
+}
+
+$fontSize1: 3rem;
+$fontSize2: 2rem;
+$fontSize3: 1.4rem;
+$fontSize4: 1rem;
+$fontSize5: 0.8rem;
+
+@mixin bodyText {
+  font-family: $fontFamilyBody;
+  font-size: $fontSize4;
+  line-height: $lineHeightBody;
+}
+
+@mixin titleText {
+  font-family: $fontFamilyBodyBold;
+  font-size: $fontSize1;
+  line-height: 1em;
+}
+
+@mixin subtitleText {
+  font-family: $fontFamilyBodyBold;
+  font-size: $fontSize2;
+  line-height: 1em;
+}

@@ -1,0 +1,70 @@
+$spaceExtraExtraLarge: 6rem;
+$spaceExtraLarge: 4rem;
+$spaceLarge: 2.8rem;
+$spaceMediumLarge: 2rem;
+$spaceMedium: 1.5rem;
+$spaceSmall: 1rem;
+$spaceExtraSmall: 0.5rem;
+$spaceExtraExtraSmall: 0.2rem;
+
+$screenSmallMin: 0px;
+$screenSmallMax: 600px;
+$screenMediumMin: 601px;
+$screenMediumMax: 1024px;
+$screenLargeMin: 1025px;
+$screenLargeMax: 1440px;
+
+$contentWidth: $screenMediumMax;
+$outerContentWidth: $screenLargeMax;
+
+$borderRadiusExtraLarge: 16px;
+$borderRadiusLarge: 8px;
+$borderRadiusMedium: 4px;
+$borderRadiusSmall: 2px;
+
+@mixin extra-large-and-up {
+  @media screen and (min-width: $screenLargeMax) {
+    @content;
+  }
+}
+
+@mixin large-and-up {
+  @media screen and (min-width: $screenLargeMin) {
+    @content;
+  }
+}
+
+@mixin large-and-below {
+  @media screen and (max-width: $screenLargeMax) {
+    @content;
+  }
+}
+
+@mixin medium-and-up {
+  @media screen and (min-width: $screenMediumMin) {
+    @content;
+  }
+}
+
+@mixin medium-and-below {
+  @media screen and (max-width: $screenMediumMax) {
+    @content;
+  }
+}
+
+@mixin small-and-below {
+  @media screen and (max-width: $screenSmallMax) {
+    @content;
+  }
+}
+
+@mixin flex-row($breakPoint: $screenSmallMax) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  @include small-and-below {
+    flex-direction: column;
+  }
+}

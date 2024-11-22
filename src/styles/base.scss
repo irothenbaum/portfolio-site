@@ -1,0 +1,27 @@
+@use "sass/reset.css";
+@use "sass/all";
+@use "components/reusable";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap');
+
+/*
+--------------------------------------------------------------------
+UNIVERSAL BOX SIZING
+--------------------------------------------------------------------
+ */
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+html,body {
+  font-size: 14px;
+  font-family: all.$fontFamilyBody, "arial", sans-serif;
+  line-height: all.$lineHeightBody;
+  width: 100%;
+  min-height: 100%;
+  color: all.$bodyColor;
+  background-color: all.$white;
+}
+

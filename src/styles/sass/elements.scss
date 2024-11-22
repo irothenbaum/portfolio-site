@@ -1,0 +1,58 @@
+@use './colors';
+@use './constants';
+@use './layout';
+
+@mixin hover-cta {
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity constants.$transitionTiming;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@mixin div-image {
+  width: 100%;
+  padding-top: 100%;
+  background: white no-repeat center center;
+  background-size: cover;
+}
+
+@mixin hover-underline($color: colors.$white, $height: 2px) {
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: $height;
+    background: $color;
+    transition: width constants.$transitionTiming;
+    margin:0 auto;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
+}
+
+@mixin bulleted-list {
+  padding-left: layout.$spaceMedium;
+
+  li {
+    list-style: disc;
+    margin-bottom: layout.$spaceSmall;
+
+    li {
+      list-style: none;
+      padding-left: layout.$spaceMedium;
+      position: relative;
+
+      &:before {
+        content: "-";
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}

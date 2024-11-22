@@ -2,29 +2,19 @@
   "name": "isaac-rothenbaum-portfolio-site",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "connect": "^3.7.0",
-    "express": "^4.17.2",
-    "express-async-handler": "^1.2.0",
-    "express-ws": "^5.0.2",
-    "node-fetch": "^2.6.6",
-    "path": "^0.12.7",
-    "sass": "^1.49.7",
-    "sharp": "^0.32.5",
-    "twing": "^5.1.0",
-    "uuid": "^8.3.2",
-    "vhost": "^3.0.2",
-    "vhttps": "^0.1.1"
-  },
+  "type": "module",
   "scripts": {
     "start": "node server/index.js",
-    "build-styles": "node node_modules/sass/sass.js server/sass:public/css",
-    "watch-styles": "node node_modules/sass/sass.js --watch server/sass:public/css"
+    "build-styles": "node scripts/runScript.js compileStyles",
+    "watch-styles": "node node_modules/sass/sass.js --watch server/sass:public/css",
+    "deploy": "node scripts/deploySite.js",
+    "build-pages": "node scripts/runScript.js compilePages",
+    "copy-assets": "node scripts/runScript.js copyAssets",
+    "build-site": "node scripts/runScript.js buildSite"
   },
   "devDependencies": {
-    "eslint": "^8.8.0",
-    "fs": "0.0.1-security",
-    "prettier": "^2.5.1"
+    "prettier": "^3.3.3",
+    "sass": "^1.81.0",
+    "twig": "^1.17.1"
   }
 }

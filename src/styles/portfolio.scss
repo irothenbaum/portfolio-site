@@ -1,0 +1,701 @@
+@use './sass/all';
+@use '../../mehmoh/src/styles/colors';
+@use '../../mehmoh/src/styles/constants';
+@use '../../mehmoh/src/styles/animations';
+@use '../../mehmoh/src/styles/elements';
+@use '../../mehmoh/src/components/VertexPolygon';
+@use '../../mehmoh/src/components/utility/Vertex';
+
+
+$colorBacklitBackground: #1f1f28;
+$colorBacklitLight: #e1ffa6;
+$colorBacklitOff: #3c4846;
+
+$bgColor: all.$darkGrey;
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+#hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+
+  h1, h2 {
+    width: 100%;
+    display: block;
+  }
+
+  h1 {
+    font-size: 72px;
+    margin-bottom: all.$spaceExtraExtraLarge;
+
+    span {
+      margin-top: all.$spaceMedium;
+      display: block;
+      font-size: 48px;
+    }
+  }
+
+  h2 {
+    font-size: 36px;
+    opacity: 0;
+  }
+
+}
+
+#hero-bottom {
+  text-align: center;
+}
+
+#down-arrow {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  animation-duration: 1s;
+  animation-name: animate-down;
+  animation-iteration-count: infinite;
+
+  svg {
+    width: 100px;
+    height: auto;
+    color: all.$bodyColor;
+  }
+}
+
+#projects-summary-container {
+  height: 60px;
+  width: 100%;
+  position: relative;
+  overflow-x: auto;
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+}
+
+#projects-summary {
+  position: absolute;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $bgColor;
+
+  a {
+    flex: 2;
+    overflow: hidden;
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding: all.$spaceSmall;
+    cursor: pointer;
+    position: relative;
+    filter: grayscale(0.6);
+
+    &:before {
+      content: '';
+      background-color: $bgColor;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+      z-index: 2;
+    }
+
+    &, &:before {
+      transition: all all.$transitionTiming;
+    }
+
+    &:hover, &.active {
+      &:before {
+        opacity: 0;
+      }
+      filter: grayscale(0);
+      flex: 3;
+
+      &#summary-backlit {
+        i {
+          color: $colorBacklitLight;
+          text-shadow: 0 0 5px white, 0 0 20px white;
+        }
+      }
+    }
+
+    img {
+      position: relative;
+      z-index: 3;
+      height: 100%;
+      margin: 0 auto;
+    }
+
+    i {
+      font-size: 40px;
+    }
+
+    &#summary-premove {
+      background-color: all.$nearWhite;
+      i {
+        color: all.$nearBlack;
+      }
+    }
+
+    &#summary-game-clock {
+      background-color: all.$white;
+      i {
+          color: all.$black;
+      }
+    }
+
+    &#summary-mehmoh {
+      background-image: linear-gradient(135deg, colors.$secondaryColor -50%, transparent 35%, transparent 65%, colors.$activeColor 150%);
+      background-color: colors.$backgroundColor;
+    }
+
+    &#summary-math-attack {
+      background-color: colors.$white;
+    }
+    &#summary-backlit {
+      background-color: $colorBacklitBackground;
+
+      i {
+        color: $colorBacklitOff;
+      }
+    }
+  }
+}
+
+#projects-section {
+  overflow: hidden;
+  width: 100%;
+
+  h2 {
+    padding: all.$spaceLarge;
+    font-size: 36px;
+  }
+
+  ul {
+    list-style: none;
+    position: relative;
+    overflow: visible;
+
+    li {
+      width: 100%;
+      min-height: 100vh;
+      padding: all.$spaceExtraLarge 0;
+
+      overflow: visible;
+      position: relative;
+
+      @include all.flex-row;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .project-item-inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: all.$contentWidth;
+        margin: 0 auto;
+
+        @include all.flex-row;
+
+        &.reverse {
+          @include all.medium-and-below {
+            flex-direction: column-reverse !important;
+          }
+        }
+
+        & > div {
+          width: 100%;
+        }
+
+        h3 {
+          margin-bottom: all.$spaceMedium;
+          font-size: 28px;
+        }
+
+        .graphic-side {
+          z-index: 2;
+          width: 100%;
+          max-width: all.$screenMediumMin;
+          text-align: center;
+
+          img {
+            width: 100%;
+          }
+          margin: all.$spaceMedium;
+        }
+
+        .text-side {
+          position: relative;
+          overflow: visible;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: all.$spaceExtraLarge auto;
+
+          .text-side-inner {
+            padding: all.$spaceMedium;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+
+            p {
+              font-size: 1.2em;
+              line-height: 1.5em;
+            }
+          }
+
+          &:before {
+            position: absolute;
+            margin-top: -50%;
+            margin-left: -50%;
+            width: 200%;
+            height: 0;
+            padding-top: 200%;
+          }
+        }
+
+        .project-cta-container {
+          margin-top: all.$spaceLarge;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            height: 50px;
+
+            &:last-child {
+              margin-left: all.$spaceMedium;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#premove {
+  background-color: all.$lightGrey;
+  background-position: center center;
+  background-repeat: repeat;
+  background-size: 15%;
+  background-image: url('/images/premove_wallpaper.png');
+
+  @include all.medium-and-below {
+    background-size: 35%;
+  }
+
+  @include all.small-and-below {
+    background-size: 60%;
+  }
+
+  .graphic-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .premove-box {
+      height: 20rem;
+      width: 20rem;
+      background-color: all.$lightGrey;
+      border-radius: 12px;
+      box-shadow: 5px 10px 30px 10px all.$shadowSoft;
+      padding: 2px 30px 30px 2px !important;
+
+      @include all.small-and-below {
+        height: 16rem;
+        width: 16rem;
+      }
+
+      .premove-box-inner {
+        height: 100%;
+        width: 100%;
+        padding: all.$spaceMedium;
+        background-color: all.$nearWhite;
+        color: all.$bodyColor;
+        border-radius: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 10rem;
+          color: all.$nearBlack;
+        }
+      }
+    }
+  }
+
+  .text-side-inner {
+    border-radius: 12px;
+    background-color: #333;
+    box-shadow: 5px 10px 30px 10px all.$shadowSoft;
+    padding: 2px 16px 16px 2px !important;
+
+    @include all.medium-and-below {
+      margin: all.$spaceLarge;
+    }
+
+    @include all.small-and-below {
+      margin: all.$spaceSmall;
+    }
+
+    & > div.depth {
+      border-radius: 10px;
+      height: 100%;
+      width: 100%;
+      padding: all.$spaceMedium;
+      background-color: all.$nearBlack;
+      color: all.$bodyColor;
+    }
+  }
+}
+
+#game-clock {
+  @keyframes tick {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .graphic-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .game-clock-circle {
+    box-shadow: 0 5px 10px 0 all.$shadow;
+    height: 10rem;
+    width: 10rem;
+    background-color: all.$white;
+    border-radius: 50%;
+    border: 10px solid all.$black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include all.medium-and-up() {
+      height: 16rem;
+      width: 16rem;
+      border-width: 16px;
+      .game-clock-hand {
+        width: 24px;
+      }
+    }
+
+    @include all.large-and-up() {
+      height: 20rem;
+      width: 20rem;
+      border-width: 20px;
+      .game-clock-hand {
+        width: 30px;
+      }
+    }
+
+    .game-clock-hand {
+      width: 15px;
+      height: 90%;
+      position: relative;
+      animation: tick 60s steps(60, end) infinite;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-color: all.$black;
+        border-radius: 20px;
+      }
+    }
+  }
+
+
+}
+
+#math-attack {
+  background-color: white;
+  background-position: center center;
+  background-repeat: repeat;
+  background-size: 15%;
+  background-image: url('/images/math_attack_wallpaper.png');
+
+  .graphic-side {
+    .math-attack-img-wrapper {
+      margin: 0 auto;
+      width: 80%;
+      padding: 20%;
+      background-color: #fcfcfc;
+      border-radius: 10%;
+      box-shadow: 0 12px 25px -12px #000, inset 0 -8px 20px -12px #000, inset 0 8px 20px 0px #fff;
+    }
+  }
+
+  &:before {
+    background: radial-gradient(circle, rgba(255,255,255, 1) 20%, rgba(255,255,255, 0.7) 100%);
+  }
+
+  .text-side-inner {
+    background-color: rgba(255,255,255, 0.9);
+    color: #333;
+
+    h3 {
+      margin-bottom: all.$spaceLarge !important;
+      img {
+        width: 120px;
+        transform: rotate(-10deg) translate(-10px, 10px);
+      }
+    }
+  }
+}
+$fontFamilyLight: 'light';
+@font-face {
+  font-family: $fontFamilyLight;
+  src: url('/mehmoh/fonts/Montserrat-Light.ttf');
+}
+
+
+#mehmoh {
+  --active-color: #{colors.$activeColor};
+  --vertex-color: #{colors.$mediumGrey};
+  --secondary-color: #{colors.$secondaryColor};
+  --vertex-radius: 3em;
+  --vertex-diameter: 6em;
+
+  background-color: colors.$backgroundColor;
+  color: colors.$copyColor;
+
+  @include all.small-and-below() {
+    --vertex-radius: 2em;
+    --vertex-diameter: 4em;
+  }
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    opacity: 0.5;
+    background-image: linear-gradient(135deg, var(--secondary-color) 0%, transparent 35%, transparent 65%, var(--active-color) 100%);
+  }
+
+  @include all.extra-large-and-up() {
+    .project-item-inner {
+      background-color: colors.$backgroundColor;
+      box-shadow: 0 0 100px 100px colors.$backgroundColor;
+    }
+  }
+
+  .text-side {
+    h3 {
+      font-family: $fontFamilyLight;
+      font-size:72px !important;
+
+      span {
+        color: colors.$activeColor;
+        &.secondary {
+          color: colors.$secondaryColor;
+        }
+      }
+    }
+  }
+
+  .graphic-side-inner {
+    margin:0 auto;
+    padding-top: 70%;
+    width:70%;
+    position: relative;
+    animation: rotation 5s infinite linear;
+
+    .vertex {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-tap-highlight-color: transparent;
+
+      &:hover {
+        &:after {
+          opacity: 0;
+        }
+
+        @include elements.shadow1(colors.$activeColor);
+        background-color: var(--active-color);
+      }
+    }
+  }
+}
+
+
+#backlit {
+  background-color: black;
+
+  &.light {
+    transition: background-color 0.2s ease-out;
+    background-color: $colorBacklitLight;
+
+    .text-side-inner {
+      color: black;
+    }
+  }
+
+  .graphic-side {
+    text-align: center;
+  }
+
+  #backlit-button {
+    font-size: 12rem;
+    box-shadow: 0 0 0 0 white;
+    color: $colorBacklitOff;
+    z-index: 10;
+
+    &:hover {
+      transition: box-shadow 0.1s 0.05s ease-out;
+      color: white;
+      text-shadow: 0 0 20px white, 0 0 80px white;
+    }
+  }
+}
+
+#footer {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+
+  h2 {
+    text-align: center;
+    font-size: 200px;
+
+    @include all.medium-and-below {
+      font-size: 120px;
+    }
+
+    @include all.small-and-below {
+      font-size: 72px;
+    }
+
+    span {
+      animation-duration: 5s;
+      animation-name: animate-light;
+      animation-iteration-count: infinite;
+      animation-delay: 0ms;
+
+      &:nth-child(2) {
+        animation-delay: 50ms;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 100ms;
+      }
+
+      &:nth-child(4) {
+        animation-delay: 50ms;
+      }
+    }
+  }
+
+  & > div {
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: $colorBacklitBackground;
+    padding: all.$spaceMedium;
+
+    a {
+      color: all.$bodyColor;
+      font-size: 1.5em;
+      @include all.hover-cta;
+      margin-right: all.$spaceMedium;
+    }
+  }
+}
+
+@keyframes animate-down {
+  0% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes animate-light {
+  0% {
+    color: rgb(255, 255, 255, 0.1);
+    text-shadow: 0 0 0 rgb(255, 255, 255, 0);
+  }
+
+  10% {
+    color: rgb(255, 255, 255, 0.1);
+    text-shadow: 0 0 0 rgb(255, 255, 255, 0.1);
+  }
+
+  11% {
+    color: rgb(255, 255, 255, 1);
+    text-shadow: 0 0 12px rgb(255, 255, 255, 1), 0 0 25px rgb(255, 255, 255, 0.5) ;
+  }
+
+  21% {
+    color: rgb(0, 200, 255, 1);
+    text-shadow: 0 0 12px rgb(0, 200, 255, 1);
+  }
+
+  50% {
+    text-shadow: 0 0 0 rgb(255, 255, 255, 0);
+  }
+
+  100% {
+    color: rgb(255, 255, 255, 0.1);
+  }
+
+}
+
+
+@keyframes shrink {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.5);
+  }
+}
