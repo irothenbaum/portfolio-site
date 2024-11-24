@@ -19,8 +19,11 @@ html,body {
   font-size: 14px;
   font-family: all.$fontFamilyBody, "arial", sans-serif;
   line-height: all.$lineHeightBody;
+  font-weight: all.$fontWeightMedium;
   width: 100%;
   min-height: 100%;
+  max-height: 100%;
+  height: 100%;
   color: all.$bodyColor;
   background-color: all.$white;
 }

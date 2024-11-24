@@ -1,11 +1,15 @@
 import buildSite from './buildSite.js'
 import {BUILD_DIR} from './constants.js'
 import {execSync} from 'child_process'
+import buildSubModule from './buildSubModule.js'
 
 const BUCKET = 's3://404jkfoundit-website'
 
 async function run() {
   await buildSite()
+  await buildSubModule('game-clock')
+  await buildSubModule('mehmoh')
+  await buildSubModule('premove')
 
   // wait 5 seconds
   for (let i = 3; i > 0; i--) {

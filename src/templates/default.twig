@@ -12,6 +12,12 @@
         <meta name="robots" content="index follow" />
     {% endblock %}
 
+    {% block fonts %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    {% endblock %}
+
     {% block favicon %}
         <!-- When we get a real favicon, check out https://realfavicongenerator.net/ -->
     {%  endblock %}
@@ -22,14 +28,14 @@
 </head>
 {% block body %}
 <body class="{{ site.environment }}">
-    {% block content %}
+    {% block page %}
         <div>Welcome to my personal site!</div>
     {% endblock %}
 
     {% block scripts %}
         <script src="https://kit.fontawesome.com/f8650deef4.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="./scripts/index.js"></script>
+        <script type="text/javascript" src="./scripts/base.js"></script>
     {% endblock %}
 </body>
 {% endblock %}

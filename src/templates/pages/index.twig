@@ -1,0 +1,15 @@
+{% extends "../portfolio.twig" %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="./styles/index.css"/>
+{% endblock %}
+
+{% block content %}
+    <div id="ide-container">
+        {% embed '../components/breadcrumbs.twig' with {crumbs: ['index.html']} %}{% endembed %}
+        <video autoplay muted loop>
+            <source src="./images/me_typing.mp4" type="video/mp4">
+        </video>
+    </div>
+{% endblock %}

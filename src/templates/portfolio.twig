@@ -1,0 +1,106 @@
+{% extends "./default.twig" %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="./styles/portfolio.css"/>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="./scripts/portfolio.js"></script>
+{% endblock %}
+
+{% block page %}
+    <div id="window">
+        <div id="menu-bar">
+            <img src="./images/logo.svg" />
+            <div>File</div>
+            <div>Edit</div>
+            <div>Tools</div>
+            <div>Help</div>
+        </div>
+        <div id="navigation">
+            <div id="nav-portfolio" class="nav-item">
+                <div class="folder">
+                    <span>portfolio</span>
+                </div>
+                <ul class="directory">
+                    <li id="nav-projects" class="nav-item">
+                        <div class="folder">
+                            <span>projects</span>
+                        </div>
+                        <ul class="directory">
+                            <li>
+                                <a href="./backlit.html" target=_blank>
+                                    <div class="file page">
+                                        <span>backlit.html</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./mehmoh/index.html" target=_blank>
+                                    <div class="file project">
+                                        <span>mehmoh.html</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./premove/index.html" target=_blank>
+                                    <div class="file project">
+                                        <span>premove.html</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="file game">
+                                    <span>smartillery.html</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="nav-about" class="nav-item">
+                        <div class="folder">
+                            <span>about</span>
+                        </div>
+                        <ul class="directory">
+                            <li>
+                                <a href="./me.html">
+                                    <div class="file page">
+                                        <span>me.html</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./resume.html">
+                                    <div class="file page">
+                                        <span>resume.html</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="./contact.html">
+                                    <div class="file page">
+                                        <span>contact.html</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="nav-index" class="nav-item">
+                        <a href="./index.html">
+                            <div class="file page">
+                                <span>index.html</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+

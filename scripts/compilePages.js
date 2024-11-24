@@ -20,11 +20,6 @@ async function compilePages() {
         try {
           fs.writeFileSync(path.join(BUILD_DIR, `${pageName}.html`), html)
 
-          // Copy home.html to index.html
-          if (pageName === 'home') {
-            fs.writeFileSync(path.join(BUILD_DIR, `index.html`), html)
-          }
-
           resolve(pageName)
         } catch (err) {
           reject(err)
