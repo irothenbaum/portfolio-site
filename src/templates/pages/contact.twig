@@ -1,0 +1,23 @@
+{% extends "../portfolio.twig" %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="./styles/contact.css"/>
+{% endblock %}
+
+{% block content %}
+    {% embed '../components/breadcrumbs.twig' with {crumbs: ['about', 'contact.html']} %}{% endembed %}
+    <div id="contact-container">
+        <div class="spacer" data-ide-lines></div>
+        <h1 data-ide-lines>Find me on</h1>
+        <div id="social-media" data-ide-lines>
+            <a href="https://www.linkedin.com/in/isaacrothenbaum/" target="_blank">
+                <i class="fa fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.github.com/irothenbaum" target="_blank">
+                <i class="fa fab fa-github"></i>
+            </a>
+        </div>
+        <div class="spacer" data-ide-lines="3"></div>
+    </div>
+{% endblock %}

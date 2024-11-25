@@ -2,10 +2,10 @@
 
 button {
   border: none;
-  border-radius: all.$borderRadiusMedium;
+  border-radius: var(--borderRadiusMedium);
   cursor: pointer;
   font-size: 2em;
-  padding: all.$spaceSmall all.$spaceLarge;
+  padding: var(--spaceSmall) var(--spaceLarge);
 
   @include all.hover-cta;
 }

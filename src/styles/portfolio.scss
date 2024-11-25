@@ -1,11 +1,26 @@
 @use './sass/all';
 
-$navBG: all.$darkGrey;
-
 $navWidth: 240px;
 $fileMenuHeight: 2.5rem;
 
+//#render-cover {
+//  position: fixed;
+//  top: 0;
+//  left: 0;
+//  width: 100%;
+//  height: 100%;
+//  background-color: var(--black);
+//  z-index: 1000;
+//  opacity: 1;
+//  transition: opacity var(--transitionTiming);
+//
+//  &.fade-out {
+//    opacity: 0;
+//  }
+//}
+
 #window {
+  color: var(--nearWhite);
   display: grid;
   gap: 0;
   grid-template-areas:
@@ -15,37 +30,37 @@ $fileMenuHeight: 2.5rem;
     grid-template-rows: $fileMenuHeight 1fr;
   height: 100%;
   width: 100%;
-  background-color: all.$black;
+  background-color: var(--black);
 }
 
 #menu-bar {
   height: $fileMenuHeight;
-  background-color: $navBG;
+  background-color: var(--darkGrey);
   grid-area: bar;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid all.$nearBlack;
+  border-bottom: 1px solid var(--nearBlack);
   user-select: none;
 
   $logoHeight: $fileMenuHeight * 0.5;
   img {
-    margin:0 all.$spaceExtraSmall;
+    margin:0 var(--spaceExtraSmall);
     width: $logoHeight;
     height: $logoHeight;
   }
 
   div {
-    padding:0 all.$spaceSmall;
-    color: all.$nearWhite;
+    padding:0 var(--spaceSmall);
+    color: var(--nearWhite);
     background-color: transparent;
-    transition: all all.$transitionTiming;
+    transition: all var(--transitionTiming);
     height: $fileMenuHeight;
     line-height: $fileMenuHeight;
     cursor: pointer;
 
     &:hover {
-      background-color: all.$sunbeamExtraSoft;
+      background-color: var(--sunbeamExtraSoft);
     }
   }
 }
@@ -53,12 +68,12 @@ $fileMenuHeight: 2.5rem;
 #navigation {
   flex-shrink: 0;
   width: $navWidth;
-  background-color: $navBG;
+  background-color: var(--darkGrey);
   height: 100%;
-  padding: all.$spaceExtraSmall;
+  padding: var(--spaceExtraSmall);
   grid-area: nav;
   line-height: 2em;
-  border-right: 1px solid all.$nearBlack;
+  border-right: 1px solid var(--nearBlack);
   user-select: none;
 
   .folder, .file {
@@ -66,18 +81,18 @@ $fileMenuHeight: 2.5rem;
     span {
       display: block;
 
-      color: all.$nearWhite;
+      color: var(--nearWhite);
 
       &:before {
         content: "";
         display: inline-block;
         background-image: url("../images/folder.svg");
-        height: all.$fontSize4;
-        width: all.$fontSize4;
+        height: var(--fontSize4);
+        width: var(--fontSize4);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
-        margin-right: all.$spaceExtraSmall;
+        margin-right: var(--spaceExtraSmall);
       }
     }
   }
@@ -101,8 +116,8 @@ $fileMenuHeight: 2.5rem;
     position: relative;
 
     &:before {
-      color: all.$lightGrey;
-      font-size: all.$fontSize3;
+      color: var(--lightGrey);
+      font-size: var(--fontSize3);
       content: "+";
       display: block;
       line-height: 1.1em;
@@ -125,8 +140,8 @@ $fileMenuHeight: 2.5rem;
   }
 
   .directory {
-    padding-left: all.$spaceLarge;
-    margin-bottom: all.$spaceExtraSmall;
+    padding-left: var(--spaceLarge);
+    margin-bottom: var(--spaceExtraSmall);
     display: none;
   }
 }
@@ -134,28 +149,65 @@ $fileMenuHeight: 2.5rem;
 #content {
   width: 100%;
   height: 100%;
-  background-color: all.$nearBlack;
+  background-color: var(--nearBlack);
   grid-area: content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 
 .breadcrumbs {
-  background-color: $navBG;
-  border-bottom: 1px solid all.$nearBlack;
-  color: all.$lightGrey;
-  padding: all.$spaceExtraSmall all.$spaceMedium;
-  font-size: all.$fontSize5;
+  flex:0;
+  width: 100%;
+  background-color: var(--darkGrey);
+  border-bottom: 1px solid var(--nearBlack);
+  color: var(--lightGrey);
+  padding: var(--spaceExtraSmall) var(--spaceMedium);
+  font-size: var(--fontSize5);
   user-select: none;
 
   .path-item {
     &:after {
       content: "/";
-      margin: 0 all.$spaceSmall;
+      margin: 0 var(--spaceSmall);
       opacity: 0.5;
     }
 
     &:last-child:after {
       content: "";
     }
+  }
+}
+
+[data-ide-lines] {
+  position: relative;
+  width: 100%;
+  padding-left: var(--spaceMedium);
+
+  .ide-line-number-container {
+    background-color: var(--darkGrey);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--spaceMedium);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ide-line-number {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+    color: var(--lightGrey);
+    font-size: var(--fontSize5);
+    font-weight: var(--fontWeightMedium);
   }
 }

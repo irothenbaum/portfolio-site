@@ -20,30 +20,30 @@ $fontSize4: 1rem;
 $fontSize5: 0.8rem;
 
 @mixin bodyText {
-  font-family: $fontFamilyBody;
-  font-size: $fontSize4;
-  font-weight: $fontWeightMedium;
-  line-height: $lineHeightBody;
+  font-family: var(--fontFamilyBody);
+  font-size: var(--fontSize4);
+  font-weight: var(--fontWeightMedium);
+  line-height: var(--lineHeightBody);
 }
 
 @mixin titleText {
-  font-family: $fontFamilyTitle;
-  font-weight: $fontWeightExtraLight;
-  font-size: $fontSize1;
-  line-height: $lineHeightTitle;
+  font-family: var(--fontFamilyTitle);
+  font-weight: var(--fontWeightExtraLight);
+  font-size: var(--fontSize1);
+  line-height: var(--lineHeightTitle);
 }
 
 @mixin subtitleText {
-  font-family: $fontFamilyTitle;
-  font-weight: $fontWeightLight;
-  font-size: $fontSize2;
-  line-height: $lineHeightTitle;
+  font-family: var(--fontFamilyTitle);
+  font-weight: var(--fontWeightLight);
+  font-size: var(--fontSize2);
+  line-height: var(--lineHeightTitle);
 }
 
 @mixin headerText {
-  font-family: $fontFamilyBody;
-  font-weight: $fontWeightBold;
-  font-size: $fontSize3;
-  line-height: $lineHeightBody;
+  font-family: var(--fontFamilyBody);
+  font-weight: var(--fontWeightBold);
+  font-size: var(--fontSize3);
+  line-height: var(--lineHeightBody);
 }
 

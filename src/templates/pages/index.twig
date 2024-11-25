@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block content %}
+    {% embed '../components/breadcrumbs.twig' with {crumbs: ['index.html']} %}{% endembed %}
     <div id="ide-container">
-        {% embed '../components/breadcrumbs.twig' with {crumbs: ['index.html']} %}{% endembed %}
         <video autoplay muted loop>
             <source src="./images/me_typing.mp4" type="video/mp4">
         </video>
