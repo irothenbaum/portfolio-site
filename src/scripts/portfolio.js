@@ -8,7 +8,7 @@
   $(window.document).ready(() => {
     configureNav()
 
-    configureIDELines()
+    // configureIDELines()
   })
 
   // ----------------------------------------------------------------------

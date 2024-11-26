@@ -1,0 +1,18 @@
+{% extends "../portfolio.twig" %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="./styles/smartillery.css"/>
+{% endblock %}
+
+{% block content %}
+    {% embed '../components/breadcrumbs.twig' with {crumbs: ['projects', 'smartillery.html']} %}{% endembed %}
+    <div id="smartillery-container">
+        <h1>Smartillery</h1>
+        <h2>A math and typing game designed to test your grit and train your brain</h2>
+
+        <p>
+            Survive the onslaught of math problems and typing challenges in this fast-paced space themed shooter.
+        </p>
+    </div>
+{% endblock %}

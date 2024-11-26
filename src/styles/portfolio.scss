@@ -70,7 +70,6 @@ $fileMenuHeight: 2.5rem;
   width: $navWidth;
   background-color: var(--darkGrey);
   height: 100%;
-  padding: var(--spaceExtraSmall);
   grid-area: nav;
   line-height: 2em;
   border-right: 1px solid var(--nearBlack);
@@ -79,9 +78,13 @@ $fileMenuHeight: 2.5rem;
   .folder, .file {
     cursor: pointer;
     span {
+      padding: 0 var(--spaceExtraSmall);
       display: block;
-
       color: var(--nearWhite);
+      transition: background-color var(--transitionTiming);
+      &:hover {
+        background-color: all.$sunbeamSoft;
+      }
 
       &:before {
         content: "";
