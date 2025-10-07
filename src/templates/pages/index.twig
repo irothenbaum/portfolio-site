@@ -1,15 +1,55 @@
-{% extends "../portfolio.twig" %}
+{% extends "../default.twig" %}
 
 {% block styles %}
     {{ parent() }}
     <link rel="stylesheet" href="./styles/index.css"/>
 {% endblock %}
 
-{% block content %}
-    {% embed '../components/breadcrumbs.twig' with {crumbs: ['index.html']} %}{% endembed %}
-    <div id="ide-container">
-        <video autoplay muted loop>
-            <source src="./images/me_typing.mp4" type="video/mp4">
-        </video>
+{% block scripts %}
+    {{ parent() }}
+    <script src="./scripts/index.js"></script>
+{% endblock %}
+
+{% block page %}
+    <div id="gallery-container">
+        <div id="quate" class="item">
+            <h3 class="title">Quate</h3>
+            <div class="details-container">
+                <p>
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Interdum nisl aptent sociosqu pulvinar felis libero phasellus sagittis? Ac egestas amet nullam; sociosqu mollis ex efficitur.
+                </p>
+                <a href="./quate/index.html"><button>Play Quate</button></a>
+            </div>
+        </div>
+
+        <div id="mehmoh" class="item">
+            <h3 class="title">m<span style="color: #00daff;">e</span>h m<span style="color: #ff9700;">o</span>h</h3>
+            <div class="details-container">
+                <p>
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Interdum nisl aptent sociosqu pulvinar felis libero phasellus sagittis? Ac egestas amet nullam; sociosqu mollis ex efficitur.
+                </p>
+                <a href="./mehmoh/index.html"><button>Play meh moh</button></a>
+            </div>
+        </div>
+
+        <div id="premove" class="item">
+            <h3 class="title">PREMOVE</h3>
+            <div class="details-container">
+                <p>
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Interdum nisl aptent sociosqu pulvinar felis libero phasellus sagittis? Ac egestas amet nullam; sociosqu mollis ex efficitur.
+                </p>
+                <a href="./premove/index.html"><button>Play PREMOVE</button></a>
+            </div>
+        </div>
+
+        <div id="predictable" class="item">
+            <h3 class="title">Predictable</h3>
+            <div class="details-container">
+                <p>
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Interdum nisl aptent sociosqu pulvinar felis libero phasellus sagittis? Ac egestas amet nullam; sociosqu mollis ex efficitur.
+                </p>
+                <a href="./predicatble/index.html"><button>Play Predictable</button></a>
+            </div>
+        </div>
     </div>
 {% endblock %}

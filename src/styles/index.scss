@@ -1,3 +1,71 @@
-#ide-container {
+#gallery-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 
+  .item {
+    position: relative;
+    flex: 1;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .title {
+      font-size: var(--font-size-xxl);
+      color: var(--color-white);
+    }
+
+    .details-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 0;
+      width: 100%;
+      opacity: 0;
+      overflow: hidden;
+      background-color: inherit;
+      z-index: 100;
+    }
+
+    &.selected {
+      .details-container {
+        height: 100%;
+        opacity: 1;
+        overflow: auto;
+      }
+    }
+  }
+
+  #quate {
+    background: radial-gradient(circle at center left, #4fbb8f, #357e60) #47ad83;
+    .title {
+      font-family: 'quate-regular', sans-serif;
+      text-shadow: 0 0 10px #357e60;
+    }
+  }
+
+  #mehmoh {
+    background: radial-gradient(circle at center left, #303541, #14171e) #303541;
+    .title {
+      font-family: 'mehmoh-light', sans-serif;
+      text-shadow: 0 0 10px #14171e;
+    }
+  }
+
+  #premove {
+    background: url('../images/premove_wallpaper.png') left center #556b50;
+    background-size: 50%;
+    .title {
+      font-family: 'premove-regular', sans-serif;
+      text-shadow: 0 0 10px #556b50;
+      font-size: 2.6rem;
+    }
+  }
+
+  #predictable {
+    background-color: grey;
+  }
 }

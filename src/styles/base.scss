@@ -1,32 +1,15 @@
-@use "sass/reset.css";
-@use "sass/all";
-@use "components/reusable";
-@use 'sass:meta';
+@use "reset.css";
+@use './typography';
+@forward "./variables";
+@forward "./layout";
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap');
 
 /*
 --------------------------------------------------------------------
-CSS VARIABLES
---------------------------------------------------------------------
- */
-
-html {
-  @each $name, $value in meta.module-variables("all") {
-    --#{$name}: #{$value};
-  }
-  //@media (prefers-color-scheme: dark) {
-  //  @each $name, $value in meta.module-variables("all") {
-  //    --#{$name}: #{$value};
-  //  }
-  //}
-}
-
-/*
---------------------------------------------------------------------
 UNIVERSAL BOX SIZING
 --------------------------------------------------------------------
- */
+*/
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -34,15 +17,14 @@ UNIVERSAL BOX SIZING
 
 
 html,body {
-  font-size: 14px;
-  font-family: var(--fontFamilyBody), "arial", sans-serif;
-  line-height: var(--lineHeightBody);
-  font-weight: var(--fontWeightMedium);
-  width: 100%;
-  min-height: 100%;
-  max-height: 100%;
   height: 100%;
-  color: var(--bodyColor);
-  background-color: var(--bgColor);
+  width: 100%;
+  line-height: 1.25em;
+  color: var(--color-text);
+  background-color: var(--color-page-bg);
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  @include typography.body-text();
 }
 

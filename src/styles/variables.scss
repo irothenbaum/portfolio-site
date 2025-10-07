@@ -1,0 +1,50 @@
+:root {
+  --base-spacing: 1rem;
+  --space-xs: calc(var(--base-spacing) * 0.3); /* 0.5rem */
+  --space-sm: calc(var(--base-spacing) * 0.5); /* 0.5rem */
+  --space-md: var(--base-spacing);             /* 1rem */
+  --space-lg: calc(var(--base-spacing) * 1.5); /* 1.5rem */
+  --space-xl: calc(var(--base-spacing) * 2.5); /* 2.5rem */
+  --space-xxl: calc(var(--base-spacing) * 5);  /* 5rem */
+
+  --base-font-size: 14px;
+  --font-size-xs: calc(var(--base-font-size) * 0.5); /* 7px */
+  --font-size-sm: calc(var(--base-font-size) * 0.85); /* 12px */
+  --font-size-md: var(--base-font-size); /* 14px */
+  --font-size-lg: calc(var(--base-font-size) * 1.25); /* 17px */
+  --font-size-xl: calc(var(--base-font-size) * 2); /* 21px */
+  --font-size-xxl: calc(var(--base-font-size) * 3); /* 28px */
+
+  --border-radius-xs: 2px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 14px;
+  --border-radius-xl: 24px;
+
+  --color-black: #2f2f2f;
+  --color-near-black: #333;
+  --color-dark-grey: #525252;
+  --color-grey: #939393;
+  --color-light-grey: #e0e0e0;
+  --color-near-white: #f1f1f1;
+  --color-white: #fff;
+
+  --screen-extra-small-min: 0px;
+  --screen-extra-small-max: 400px;
+  --screen-small-min: 401px;
+  --screen-small-max: 600px;
+  --screen-medium-min: 601px;
+  --screen-medium-max: 1024px;
+  --screen-large-min: 1025px;
+  --screen-large-max: 1440px;
+  --screen-extra-large-min: 1441px;
+  --screen-extra-large-max: 1920px;
+
+  --content-max-width: var(--screen-medium-max);
+
+  --hud-min-height: 8rem;
+  --row-height: 10vh;
+  --hud-height: max(var(--row-height), var(--hud-min-height));
+
+  --term-size: 7rem;
+}

@@ -7,3 +7,6 @@
 [submodule "premove"]
 	path = premove
 	url = git@github.com:irothenbaum/premove.git
+[submodule "quate"]
+	path = quate
+	url = git@github.com:irothenbaum/quate.git

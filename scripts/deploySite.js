@@ -10,6 +10,7 @@ async function run() {
   await buildSubModule('game-clock')
   await buildSubModule('mehmoh')
   await buildSubModule('premove')
+  await buildSubModule('quate')
 
   // wait 5 seconds
   for (let i = 3; i > 0; i--) {

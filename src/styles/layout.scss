@@ -1,0 +1,48 @@
+// these values match the `screen-` values in src/styles/variables.scss
+@mixin extra-large-and-up {
+  @media screen and (min-width: 1441px) {
+    @content;
+  }
+}
+
+@mixin large-and-below {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin large-and-up {
+  @media screen and (min-width: 1025px) {
+    @content;
+  }
+}
+
+@mixin medium-and-below {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin medium-and-up {
+  @media screen and (min-width: 601px) {
+    @content;
+  }
+}
+
+@mixin small-and-below {
+  @media screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin small-and-up {
+  @media screen and (min-width: 601px) {
+    @content;
+  }
+}
+
+@mixin extra-small-and-below {
+  @media screen and (max-width: 400px) {
+    @content;
+  }
+}
