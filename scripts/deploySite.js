@@ -3,7 +3,7 @@ import {BUILD_DIR} from './constants.js'
 import {execSync} from 'child_process'
 import buildSubModule from './buildSubModule.js'
 
-const BUCKET = 's3://404jkfoundit-website'
+const BUCKET = 's3://404jkfoundit-site'
 
 async function run() {
   await buildSite()
@@ -18,7 +18,7 @@ async function run() {
     await pause(1000)
   }
 
-  execSync(`aws s3 sync ${BUILD_DIR} ${BUCKET} --acl public-read`, {
+  execSync(`aws s3 sync ${BUILD_DIR} ${BUCKET}`, {
     stdio: 'inherit',
   })
 }

@@ -9,6 +9,9 @@ async function buildSite() {
 
   if (!fs.existsSync(BUILD_DIR)) {
     fs.mkdirSync(BUILD_DIR)
+  } else {
+    fs.rmSync(BUILD_DIR, {recursive: true, force: true})
+    fs.mkdirSync(BUILD_DIR)
   }
 
   await compilePages()
